@@ -26,8 +26,27 @@ namespace SimpleAudioManager
 
         private void Awake()
         {
-            // TODO adapt to Unity Object Pool
-            audioSources = new ObjectPool<AudioSource>(transform);
+            audioSources = new ObjectPool<AudioSource>(Create, OnGet, OnRelease);
+
+            AudioSource Create()
+            {
+                GameObject go = new GameObject("AudioSource");
+                go.transform.SetParent(transform);
+                
+                return go.AddComponent<AudioSource>();
+            }
+
+            void OnGet(AudioSource audioSource)
+            {
+                audioSource.enabled = true;
+                audioSource.transform.SetParent(transform);
+            }
+
+            void OnRelease(AudioSource audioSource)
+            {
+                audioSource.enabled = false;
+                audioSource.transform.SetParent(transform);
+            }
         }
 
         private void Start()
@@ -75,7 +94,7 @@ namespace SimpleAudioManager
 
         private AudioSource SetupAudioSource(AudioClip clip, Vector3 position, SoundType soundType, float volume, bool is3D, bool loop, float pitch)
         {
-            AudioSource audioSource = audioSources.GetFromPool();
+            AudioSource audioSource = audioSources.Get();
             ConfigureAudioSource(ref audioSource, clip, position, volume, soundType, is3D, loop, pitch);
             return audioSource;
         }
@@ -108,7 +127,7 @@ namespace SimpleAudioManager
 
         private void ReturnAudioSourceToPool(AudioSource audioSource)
         {
-            audioSources.ReturnToPool(audioSource);
+            audioSources.Release(audioSource);
         }
 
         public void StopAudioClip(AudioClip audioClip)
@@ -167,7 +186,7 @@ namespace SimpleAudioManager
         {
             // TODO investigate range package
             return 1;
-            
+
             // return GetPitchRangeForPitchShiftType(pitchShiftType).Random();
         }
 
