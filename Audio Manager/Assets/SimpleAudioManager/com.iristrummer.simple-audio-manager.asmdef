@@ -1,3 +1,16 @@
 {
-	"name": "com."
+    "name": "com.iristrummer.simple-audio-manager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:ca7b511c9961e214daf84e34d35ba806"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
