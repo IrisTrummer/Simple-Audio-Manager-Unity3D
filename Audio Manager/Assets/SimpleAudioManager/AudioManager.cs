@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Timing;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Pool;
@@ -120,8 +121,7 @@ namespace SimpleAudioManager
 
             if (!audioSource.loop)
             {
-                // TODO delay package
-                // Delay.Create(audioSource.clip.length, () => ReturnAudioSourceToPool(audioSource));
+                Delay.Create(audioSource.clip.length, () => ReturnAudioSourceToPool(audioSource));
             }
         }
 
@@ -147,9 +147,8 @@ namespace SimpleAudioManager
             {
                 if (Mathf.Approximately(delay, 0))
                     StopAudioSource(loopingAudioSource.Value);
-                // TODO delay package
-                // else
-                //     Delay.Create(delay, () => StopAudioSource(loopingAudioSource.Value), true);
+                else
+                   Delay.Create(delay, () => StopAudioSource(loopingAudioSource.Value), true);
             }
 
             loopingAudioSources.Clear();

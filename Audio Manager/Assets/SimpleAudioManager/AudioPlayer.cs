@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Timing;
+using UnityEngine;
 
 namespace SimpleAudioManager
 {
@@ -69,8 +70,7 @@ namespace SimpleAudioManager
             if (fadeGroup && !suppressFading)
             {
                 audioManager.FadeGroupTo(0, fadeDuration, soundType);
-                // TODO delay package
-                // Delay.Create(fadeDuration, () => audioManager.StopAudioClip(clip));
+                Delay.Create(fadeDuration, () => audioManager.StopAudioClip(clip));
             }
             else
             {
