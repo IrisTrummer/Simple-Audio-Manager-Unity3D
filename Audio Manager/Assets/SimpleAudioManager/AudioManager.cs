@@ -9,25 +9,20 @@ using UnityEngine.Pool;
 
 namespace SimpleAudioManager
 {
-    public class AudioManager : MonoBehaviour
+    public partial class AudioManager : MonoBehaviour
     {
         [SerializeField]
         private AudioMixer audioMixer;
-
-        [Header("Scene Loading")]
-        [SerializeField]
-        [Tooltip("Indicates the duration for fading in sounds when loading levels.")]
-        private float fadeInDuration = 2f;
-
-        [SerializeField]
-        [Tooltip("Indicates the duration for fading out sounds when loading levels.")]
-        private float fadeOutDuration = 1f;
 
         private ObjectPool<AudioSource> audioSources;
         private readonly Dictionary<AudioClip, AudioSource> loopingAudioSources = new();
 
         private void Awake()
         {
+#if !NO_SINGLETON_AUDIO_MANAGER
+            InitializeSingleton(this);
+#endif
+
             audioSources = new ObjectPool<AudioSource>(Create, OnGet, OnRelease);
 
             AudioSource Create()
@@ -62,7 +57,7 @@ namespace SimpleAudioManager
             if (clip == null)
                 return;
 
-            Play(SetupAudioSource(clip, Vector3.zero, soundType, volume, false, false, GetRandomPitchShift(pitchShiftType)), clip);
+            Play(SetupAudioSource(clip, Vector3.zero, soundType, volume, false, false, GetRandomPitchShift(pitchShiftType)));
         }
 
         public void PlayOnce(AudioClip clip, SoundType soundType, float volume, float pitch)
@@ -70,7 +65,7 @@ namespace SimpleAudioManager
             if (clip == null)
                 return;
 
-            Play(SetupAudioSource(clip, Vector3.zero, soundType, volume, false, false, pitch), clip);
+            Play(SetupAudioSource(clip, Vector3.zero, soundType, volume, false, false, pitch));
         }
 
         public void PlayOnLoop(AudioClip clip, SoundType soundType, float volume = 1f, PitchShiftType pitchShiftType = PitchShiftType.None)
@@ -79,7 +74,7 @@ namespace SimpleAudioManager
                 return;
 
             AudioSource audioSource = SetupAudioSource(clip, Vector3.zero, soundType, volume, false, true, GetRandomPitchShift(pitchShiftType));
-            Play(audioSource, clip);
+            Play(audioSource);
 
             loopingAudioSources.Add(clip, audioSource);
         }
@@ -91,7 +86,7 @@ namespace SimpleAudioManager
                 throw new ArgumentNullException(nameof(clip), "There is no audio clip to play!");
             }
 
-            Play(SetupAudioSource(clip, position, soundType, volume, true, loop, GetRandomPitchShift(pitchShiftType)), clip);
+            Play(SetupAudioSource(clip, position, soundType, volume, true, loop, GetRandomPitchShift(pitchShiftType)));
         }
 
         private AudioSource SetupAudioSource(AudioClip clip, Vector3 position, SoundType soundType, float volume, bool is3D, bool loop, float pitch)
@@ -116,7 +111,7 @@ namespace SimpleAudioManager
             audioSource.pitch = pitch;
         }
 
-        private void Play(AudioSource audioSource, AudioClip audioClip)
+        private void Play(AudioSource audioSource)
         {
             audioSource.Play();
 
