@@ -1,0 +1,30 @@
+{
+  "name": "com.iristrummer.simple-audio-manager",
+  "version": "1.0.0",
+  "displayName": "Simple Audio Manager",
+  "description": "A simple to use audio manager for Unity",
+  "documentationUrl": "https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/README.md",
+  "changelogUrl": "https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/Audio%20Manager/Assets/SimpleAudioManager/LICENSE",
+  "dependencies": {},
+  "keywords": [
+    "utilities",
+    "audio",
+    "SFX",
+    "music"
+  ],
+  "author": {
+    "name": "Iris Trummer",
+    "url": "https://iristrummer.com"
+  },
+  "contributors": [
+    {
+      "name": "Iris Trummer",
+      "url": "https://iristrummer.com"
+    },
+    {
+      "name": "Sandro Figo",
+      "url": "https://sandrofigo.com"
+    }
+  ]
+}
