@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using RangePrimitive;
 using Timing;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -33,7 +34,7 @@ namespace SimpleAudioManager
             {
                 GameObject go = new GameObject("AudioSource");
                 go.transform.SetParent(transform);
-                
+
                 return go.AddComponent<AudioSource>();
             }
 
@@ -148,7 +149,7 @@ namespace SimpleAudioManager
                 if (Mathf.Approximately(delay, 0))
                     StopAudioSource(loopingAudioSource.Value);
                 else
-                   Delay.Create(delay, () => StopAudioSource(loopingAudioSource.Value), true);
+                    Delay.Create(delay, () => StopAudioSource(loopingAudioSource.Value), true);
             }
 
             loopingAudioSources.Clear();
@@ -163,30 +164,26 @@ namespace SimpleAudioManager
             ReturnAudioSourceToPool(audioSource);
         }
 
-        // TODO investigate range package
-        // private Range<float> GetPitchRangeForPitchShiftType(PitchShiftType pitchShiftType)
-        // {
-        //     switch (pitchShiftType)
-        //     {
-        //         case PitchShiftType.None:
-        //             return new Range<float>(1f, 1f);
-        //         case PitchShiftType.Small:
-        //             return new Range<float>(0.9f, 1.1f);
-        //         case PitchShiftType.Medium:
-        //             return new Range<float>(0.75f, 1.25f);
-        //         case PitchShiftType.Large:
-        //             return new Range<float>(0.5f, 1.5f);
-        //         default:
-        //             throw new ArgumentOutOfRangeException(nameof(pitchShiftType), pitchShiftType, null);
-        //     }
-        // }
+        private Range<float> GetPitchRangeForPitchShiftType(PitchShiftType pitchShiftType)
+        {
+            switch (pitchShiftType)
+            {
+                case PitchShiftType.None:
+                    return new Range<float>(1f, 1f);
+                case PitchShiftType.Small:
+                    return new Range<float>(0.9f, 1.1f);
+                case PitchShiftType.Medium:
+                    return new Range<float>(0.75f, 1.25f);
+                case PitchShiftType.Large:
+                    return new Range<float>(0.5f, 1.5f);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(pitchShiftType), pitchShiftType, null);
+            }
+        }
 
         private float GetRandomPitchShift(PitchShiftType pitchShiftType)
         {
-            // TODO investigate range package
-            return 1;
-
-            // return GetPitchRangeForPitchShiftType(pitchShiftType).Random();
+            return GetPitchRangeForPitchShiftType(pitchShiftType).Random();
         }
 
         private string GetNameFromSoundType(SoundType soundType)
@@ -219,7 +216,7 @@ namespace SimpleAudioManager
 
         private void FadeAllGroupsTo(float value, float duration)
         {
-            foreach (SoundType soundType in (SoundType[]) Enum.GetValues(typeof(SoundType)))
+            foreach (SoundType soundType in (SoundType[])Enum.GetValues(typeof(SoundType)))
             {
                 FadeGroupTo(value, duration, soundType);
             }
