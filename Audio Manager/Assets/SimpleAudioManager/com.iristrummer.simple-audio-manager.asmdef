@@ -2,7 +2,8 @@
     "name": "com.iristrummer.simple-audio-manager",
     "rootNamespace": "",
     "references": [
-        "GUID:ca7b511c9961e214daf84e34d35ba806"
+        "GUID:ca7b511c9961e214daf84e34d35ba806",
+        "GUID:de5d810142384c041ac80664b848f904"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
