@@ -153,8 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 0}
-  fadeInDuration: 2
-  fadeOutDuration: 1
 --- !u!4 &28726369
 Transform:
   m_ObjectHideFlags: 0
