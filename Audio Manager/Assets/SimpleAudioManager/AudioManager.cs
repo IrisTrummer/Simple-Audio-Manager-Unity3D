@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using RangePrimitive;
 using Timing;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Audio;
 using UnityEngine.Pool;
 
@@ -23,6 +24,8 @@ namespace SimpleAudioManager
             InitializeSingleton(this);
 #endif
 
+            Assert.IsNotNull(audioMixer, $"You need to specify an {nameof(AudioMixer)} for the {nameof(AudioManager)}!");
+            
             audioSources = new ObjectPool<AudioSource>(Create, OnGet, OnRelease);
 
             AudioSource Create()
