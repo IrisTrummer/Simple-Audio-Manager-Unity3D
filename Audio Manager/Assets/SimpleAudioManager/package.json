@@ -6,7 +6,10 @@
   "documentationUrl": "https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/README.md",
   "changelogUrl": "https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/CHANGELOG.md",
   "licensesUrl": "https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/Audio%20Manager/Assets/SimpleAudioManager/LICENSE",
-  "dependencies": {},
+  "dependencies": {
+    "com.sandrofigo.delay-unity3d": "3.3.0",
+    "com.iristrummer.range-primitive": "1.0.0"
+  },
   "keywords": [
     "utilities",
     "audio",
