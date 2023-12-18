@@ -68,7 +68,7 @@ namespace SimpleAudioManager
         {
             if (fadeGroup && !suppressFading)
             {
-                AudioManager.FadeGroupTo(0, fadeDuration, soundType);
+                AudioManager.FadeGroupVolumeTo(0, fadeDuration, soundType);
                 Delay.Create(fadeDuration, () => AudioManager.StopAudioClip(clip));
             }
             else
@@ -80,9 +80,9 @@ namespace SimpleAudioManager
         /// <summary>
         /// Fades the audio clip's group to the given percentage.
         /// </summary>
-        public void FadeGroupTo(float targetValue, float duration)
+        public void FadeGroupVolumeTo(float targetValue, float duration)
         {
-            AudioManager.FadeGroupTo(targetValue, duration, soundType);
+            AudioManager.FadeGroupVolumeTo(targetValue, duration, soundType);
         }
     }
 }
