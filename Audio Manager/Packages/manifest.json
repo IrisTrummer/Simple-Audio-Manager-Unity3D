@@ -40,7 +40,8 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.sandrofigo.colorbindings": "1.0.0"
+    "com.sandrofigo.colorbindings": "1.0.0",
+    "com.nobi.roundedcorners": "3.0.1"
   },
   "scopedRegistries": [
     {
@@ -48,6 +49,7 @@
       "url": "https://package.openupm.com",
       "scopes": [
         "com.iristrummer.range-primitive",
+        "com.nobi.roundedcorners",
         "com.openupm",
         "com.sandrofigo.colorbindings",
         "com.sandrofigo.delay-unity3d"

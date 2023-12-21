@@ -31,6 +31,7 @@ MonoBehaviour:
     m_Url: https://package.openupm.com
     m_Scopes:
     - com.iristrummer.range-primitive
+    - com.nobi.roundedcorners
     - com.openupm
     - com.sandrofigo.colorbindings
     - com.sandrofigo.delay-unity3d
