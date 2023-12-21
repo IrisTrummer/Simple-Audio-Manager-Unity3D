@@ -32,6 +32,7 @@ MonoBehaviour:
     m_Scopes:
     - com.iristrummer.range-primitive
     - com.openupm
+    - com.sandrofigo.colorbindings
     - com.sandrofigo.delay-unity3d
     m_IsDefault: 0
     m_Capabilities: 0
