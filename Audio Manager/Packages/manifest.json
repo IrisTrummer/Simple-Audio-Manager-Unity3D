@@ -39,7 +39,8 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.sandrofigo.colorbindings": "1.0.0"
   },
   "scopedRegistries": [
     {
@@ -48,6 +49,7 @@
       "scopes": [
         "com.iristrummer.range-primitive",
         "com.openupm",
+        "com.sandrofigo.colorbindings",
         "com.sandrofigo.delay-unity3d"
       ]
     }
