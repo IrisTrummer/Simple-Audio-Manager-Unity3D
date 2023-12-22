@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using SimpleAudioManager;
 using UnityEngine;
 
 namespace Testing
 {
-    // TODO stop clip when button is pressed
     public class LoopingClipsDisplay : MonoBehaviour
     {
         [SerializeField]
@@ -56,6 +56,7 @@ namespace Testing
             // TODO max elements
             DebugInformationElement element = Instantiate(debugInformationElementPrefab, elementParent);
             element.Configure(spawnedElements.Count + 1, clip.name, source.outputAudioMixerGroup.name);
+            element.ButtonPress += OnButtonPressed;
 
             spawnedElements.Add(clip, element);
         }
@@ -67,12 +68,23 @@ namespace Testing
 
             Destroy(element.gameObject);
             spawnedElements.Remove(clip);
+            element.ButtonPress -= OnButtonPressed;
 
             foreach (KeyValuePair<AudioClip, DebugInformationElement> e in spawnedElements)
             {
                 if (e.Value.Index >= element.Index)
                     e.Value.SetIndex(e.Value.Index - 1);
             }
+        }
+
+        private void OnButtonPressed(DebugInformationElement debugInformationElement)
+        {
+            AudioClip clip = spawnedElements.FirstOrDefault(e => e.Value == debugInformationElement).Key;
+
+            if (clip == null)
+                return;
+            
+            AudioManager.Instance.StopAudioClip(clip);
         }
     }
 }
