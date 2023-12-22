@@ -1,4 +1,4 @@
-using System.Text.RegularExpressions;
+using System;
 using Core;
 using TMPro;
 using UnityEngine;
@@ -20,8 +20,19 @@ namespace Testing
         [SerializeField]
         private Button button;
 
-        public Button Button => button;
         public int Index { get; private set; }
+        
+        public Action<DebugInformationElement> ButtonPress;
+
+        private void Awake()
+        {
+            button.onClick.AddListener(RaiseButtonPressedEvent);
+        }
+
+        private void OnDestroy()
+        {
+            button.onClick.RemoveListener(RaiseButtonPressedEvent);
+        }
 
         public void Configure(int index, string name, string groupName)
         {
@@ -44,6 +55,11 @@ namespace Testing
         public void SetGroupName(string groupName)
         {
             groupNameText.SetTextBetweenTags(groupName);
+        }
+
+        private void RaiseButtonPressedEvent()
+        {
+            ButtonPress.Invoke(this);
         }
     }
 }
