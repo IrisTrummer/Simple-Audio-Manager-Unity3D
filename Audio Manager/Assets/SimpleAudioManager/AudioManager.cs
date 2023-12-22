@@ -18,6 +18,8 @@ namespace SimpleAudioManager
         private ObjectPool<AudioSource> audioSources;
         private readonly Dictionary<AudioClip, AudioSource> loopingAudioSources = new();
 
+        public IReadOnlyDictionary<AudioClip, AudioSource> LoopingClips => loopingAudioSources;
+
         private void Awake()
         {
 #if !NO_SINGLETON_AUDIO_MANAGER
