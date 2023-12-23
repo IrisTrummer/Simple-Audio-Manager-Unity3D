@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SimpleAudioManager;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Testing
 {
@@ -13,6 +14,12 @@ namespace Testing
         [SerializeField]
         private Transform elementParent;
 
+        [SerializeField]
+        private int maxElementCount = 5;
+
+        [SerializeField]
+        private Image overflowIndicator;
+
         private readonly Dictionary<AudioClip, DebugInformationElement> spawnedElements = new();
         private readonly List<AudioClip> elementsToDelete = new();
 
@@ -20,6 +27,8 @@ namespace Testing
         {
             for (int i = 0; i < elementParent.childCount; i++)
                 Destroy(elementParent.GetChild(i).gameObject);
+
+            overflowIndicator.gameObject.SetActive(false);
         }
 
         private void Update()
@@ -53,12 +62,17 @@ namespace Testing
 
         private void CreateNewElement(AudioClip clip, AudioSource source)
         {
-            // TODO max elements
             DebugInformationElement element = Instantiate(debugInformationElementPrefab, elementParent);
             element.Configure(spawnedElements.Count + 1, clip.name, source.outputAudioMixerGroup.name);
             element.ButtonPress += OnButtonPressed;
 
             spawnedElements.Add(clip, element);
+
+            if (spawnedElements.Count > maxElementCount)
+            {
+                overflowIndicator.gameObject.SetActive(true);
+                element.gameObject.SetActive(false);
+            }
         }
 
         private void DeleteElement(AudioClip clip)
@@ -74,7 +88,11 @@ namespace Testing
             {
                 if (e.Value.Index >= element.Index)
                     e.Value.SetIndex(e.Value.Index - 1);
+
+                e.Value.gameObject.SetActive(e.Value.Index <= maxElementCount);
             }
+
+            overflowIndicator.gameObject.SetActive(spawnedElements.Count > maxElementCount);
         }
 
         private void OnButtonPressed(DebugInformationElement debugInformationElement)
@@ -82,7 +100,6 @@ namespace Testing
             AudioClip clip = spawnedElements.FirstOrDefault(e => e.Value == debugInformationElement).Key;
 
             // Not null checking the clip here to test whether the audio manager correctly handles that
-            
             AudioManager.Instance.StopAudioClip(clip);
         }
     }
