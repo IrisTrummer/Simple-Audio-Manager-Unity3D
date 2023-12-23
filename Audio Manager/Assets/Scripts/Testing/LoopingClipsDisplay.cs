@@ -81,8 +81,7 @@ namespace Testing
         {
             AudioClip clip = spawnedElements.FirstOrDefault(e => e.Value == debugInformationElement).Key;
 
-            if (clip == null)
-                return;
+            // Not null checking the clip here to test whether the audio manager correctly handles that
             
             AudioManager.Instance.StopAudioClip(clip);
         }
