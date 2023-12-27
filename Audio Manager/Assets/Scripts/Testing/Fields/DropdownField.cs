@@ -18,6 +18,12 @@ namespace Testing.Fields
         [SerializeField]
         private TextStyles dropDownTextStyle = TextStyles.Body;
 
+        public void Initialise(string name, List<string> options)
+        {
+            SetFieldName(name);
+            SetDropdownOptions(options);
+        }
+
         public void SetFieldName(string fieldName)
         {
             FieldName = fieldName;

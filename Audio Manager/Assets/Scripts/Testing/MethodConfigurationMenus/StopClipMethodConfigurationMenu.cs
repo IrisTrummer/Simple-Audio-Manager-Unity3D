@@ -18,8 +18,7 @@ namespace Testing.MethodConfigurationMenus
 
         public void InitialiseClips(string fieldName, List<string> clipNames)
         {
-            dropdownField.SetFieldName(fieldName);
-            dropdownField.SetDropdownOptions(clipNames);
+            dropdownField.Initialise(fieldName, clipNames);
         }
 
         protected override MethodParameters.MethodParameters GetMethodParameters()
