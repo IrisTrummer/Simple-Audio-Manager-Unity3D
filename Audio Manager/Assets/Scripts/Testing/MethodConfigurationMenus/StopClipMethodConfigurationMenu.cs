@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using SimpleAudioManager;
 using Testing.Fields;
 using Testing.MethodConfigurationMenus.MethodParameters;
 using UnityEngine;
@@ -11,13 +10,9 @@ namespace Testing.MethodConfigurationMenus
         [SerializeField]
         private DropdownField dropdownField;
 
-        public override void InitialiseSelf()
+        public void InitialiseClips(string methodName, List<string> clipNames)
         {
-            SetMethodName(nameof(AudioManager.StopAudioClip));
-        }
-
-        public void InitialiseClips(List<string> clipNames)
-        {
+            SetMethodName(methodName);
             dropdownField.Initialise(FieldNames.Clip, clipNames);
         }
 

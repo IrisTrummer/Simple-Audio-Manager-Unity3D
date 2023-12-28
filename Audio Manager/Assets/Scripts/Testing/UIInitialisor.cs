@@ -12,8 +12,17 @@ namespace Testing
         [SerializeField]
         private StopClipMethodConfigurationMenu stopClip;
 
+        public StopClipMethodConfigurationMenu StopClip => stopClip;
+
         [SerializeField]
         private PlayClipMethodConfigurationMenu playOnce;
+
+        public PlayClipMethodConfigurationMenu PlayOnce => playOnce;
+
+        [SerializeField]
+        private PlayClipMethodConfigurationMenu playOnLoop;
+
+        public PlayClipMethodConfigurationMenu PlayOnLoop => playOnLoop;
 
         [SerializeField]
         private AudioClip[] audioClips;
@@ -30,11 +39,10 @@ namespace Testing
 
         private void Initialise()
         {
-            stopClip.InitialiseSelf();
-            stopClip.InitialiseClips(GetAudioClipNames());
-
-            playOnce.InitialiseSelf();
-            playOnce.Initialise(GetAudioClipNames(), GetAudioGroupNames());
+            // TODO add spaces for method names
+            stopClip.InitialiseClips(nameof(AudioManager.StopAudioClip), GetAudioClipNames());
+            InitialisePlayConfiguration(playOnce, nameof(AudioManager.PlayOnce));
+            InitialisePlayConfiguration(playOnLoop, nameof(AudioManager.PlayOnLoop));
         }
 
         private List<string> GetAudioClipNames()
@@ -50,6 +58,11 @@ namespace Testing
                 names.Add(soundType.ToString());
 
             return names;
+        }
+
+        private void InitialisePlayConfiguration(PlayClipMethodConfigurationMenu configuration, string methodName)
+        {
+            configuration.Initialise(methodName, GetAudioClipNames(), GetAudioGroupNames(), 1, 1);
         }
     }
 }

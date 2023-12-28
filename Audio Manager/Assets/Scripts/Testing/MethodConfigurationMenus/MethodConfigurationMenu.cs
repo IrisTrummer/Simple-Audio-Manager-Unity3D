@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Testing.MethodConfigurationMenus
 {
-    public class MethodConfigurationMenu : MonoBehaviour
+    public abstract class MethodConfigurationMenu : MonoBehaviour
     {
         [SerializeField]
         private TMP_Text methodNameText;
@@ -29,10 +29,6 @@ namespace Testing.MethodConfigurationMenus
         {
             startButton.onClick.RemoveListener(RaiseStartButtonClickedEvent);
         }
-
-        public virtual void InitialiseSelf()
-        {
-        }
         
         protected void SetMethodName(string methodName)
         {
@@ -40,16 +36,7 @@ namespace Testing.MethodConfigurationMenus
             methodNameText.SetTextBetweenTags(methodName);
         }
 
-        protected void InitialiseDropdownField(DropdownField dropdownField, string dropdownFieldName, List<string> options)
-        {
-            dropdownField.SetFieldName(dropdownFieldName);
-            dropdownField.SetDropdownOptions(options);
-        }
-
-        protected virtual MethodParameters.MethodParameters GetMethodParameters()
-        {
-            return new MethodParameters.MethodParameters();
-        }
+        protected abstract MethodParameters.MethodParameters GetMethodParameters();
         
         private void RaiseStartButtonClickedEvent()
         {
