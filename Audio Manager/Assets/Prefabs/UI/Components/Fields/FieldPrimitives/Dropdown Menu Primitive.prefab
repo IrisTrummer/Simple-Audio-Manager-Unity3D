@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 1422391107931688981}
   - component: {fileID: 1422391107931688980}
   m_Layer: 5
-  m_Name: Dropdown Menu
+  m_Name: Dropdown Menu Primitive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
