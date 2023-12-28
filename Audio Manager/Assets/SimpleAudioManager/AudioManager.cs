@@ -68,20 +68,29 @@ namespace SimpleAudioManager
         {
             PlayOnce(clip, soundType, GetRandomPitchShift(pitchShiftType), volume);
         }
-
+        
         /// <summary>
-        /// Plays the given audio clip with the specified parameters on loop. If not set to "None", the pitch is taken randomly from the corresponding allowed range.
+        /// Plays the given audio clip with the specified parameters on loop.
         /// To stop the clip again, use <see cref="StopAudioClip"/>.
         /// </summary>
-        public void PlayOnLoop(AudioClip clip, SoundType soundType, float volume = 1f, PitchShiftType pitchShiftType = PitchShiftType.None)
+        public void PlayOnLoop(AudioClip clip, SoundType soundType, float pitch, float volume = 1f)
         {
             if (clip == null || loopingAudioSources.ContainsKey(clip))
                 return;
 
-            AudioSource audioSource = SetupAudioSource(clip, Vector3.zero, soundType, volume, false, true, GetRandomPitchShift(pitchShiftType));
+            AudioSource audioSource = SetupAudioSource(clip, Vector3.zero, soundType, volume, false, true, pitch);
             Play(audioSource);
 
             loopingAudioSources.Add(clip, audioSource);
+        }
+
+        /// <summary>
+        /// <inheritdoc cref="PlayOnLoop(UnityEngine.AudioClip,SimpleAudioManager.SoundType,float,float)"/>
+        /// If not set to "None", the pitch is taken randomly from the corresponding allowed range.
+        /// </summary>
+        public void PlayOnLoop(AudioClip clip, SoundType soundType, float volume = 1f, PitchShiftType pitchShiftType = PitchShiftType.None)
+        {
+            PlayOnLoop(clip, soundType, GetRandomPitchShift(pitchShiftType), volume);
         }
         
         /// <summary>
