@@ -16,9 +16,9 @@ namespace Testing.MethodConfigurationMenus
             SetMethodName(nameof(AudioManager.StopAudioClip));
         }
 
-        public void InitialiseClips(string fieldName, List<string> clipNames)
+        public void InitialiseClips(List<string> clipNames)
         {
-            dropdownField.Initialise(fieldName, clipNames);
+            dropdownField.Initialise(FieldNames.Clip, clipNames);
         }
 
         protected override MethodParameters.MethodParameters GetMethodParameters()
