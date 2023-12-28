@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using SimpleAudioManager;
 using Testing.Fields;
 using Testing.MethodConfigurationMenus.MethodParameters;
 using UnityEngine;
@@ -22,19 +21,14 @@ namespace Testing.MethodConfigurationMenus
         
         // TODO random pitch
 
-        public override void InitialiseSelf()
+        public void Initialise(string methodName, List<string> clipNames, List<string> groupNames, float volumeDefaultValue, float pitchDefaultValue)
         {
-            // TODO configure from outside
-            SetMethodName(nameof(AudioManager.PlayOnce));
+            SetMethodName(methodName);
             
-            volumeField.Initialise(FieldNames.Volume, 1);
-            pitchField.Initialise(FieldNames.Pitch, 1);
-        }
-
-        public void Initialise(List<string> clipNames, List<string> groupNames)
-        {
             clipDropdownField.Initialise(FieldNames.Clip, clipNames);
             groupDropdownField.Initialise(FieldNames.Group, groupNames);
+            volumeField.Initialise(FieldNames.Volume, volumeDefaultValue);
+            pitchField.Initialise(FieldNames.Pitch, pitchDefaultValue);
         }
 
         protected override MethodParameters.MethodParameters GetMethodParameters()

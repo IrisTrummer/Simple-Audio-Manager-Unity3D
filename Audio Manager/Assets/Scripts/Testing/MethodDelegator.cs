@@ -8,26 +8,21 @@ namespace Testing
 {
     public class MethodDelegator : MonoBehaviour
     {
-        // TODO get fields from ui initialisor
-        [SerializeField]
-        private StopClipMethodConfigurationMenu stopClip;
-
-        [SerializeField]
-        private PlayClipMethodConfigurationMenu playOnce;
-
         [SerializeField]
         private UIInitialisor uiInitialisor;
 
         private void Awake()
         {
-            stopClip.StartButtonClicked += StopClipButtonClicked;
-            playOnce.StartButtonClicked += PlayOnceButtonClicked;
+            uiInitialisor.StopClip.StartButtonClicked += StopClipButtonClicked;
+            uiInitialisor.PlayOnce.StartButtonClicked += PlayOnceButtonClicked;
+            uiInitialisor.PlayOnLoop.StartButtonClicked += PlayOnLoopButtonClicked;
         }
 
         private void OnDestroy()
         {
-            stopClip.StartButtonClicked -= StopClipButtonClicked;
-            playOnce.StartButtonClicked -= PlayOnceButtonClicked;
+            uiInitialisor.StopClip.StartButtonClicked -= StopClipButtonClicked;
+            uiInitialisor.PlayOnce.StartButtonClicked -= PlayOnceButtonClicked;
+            uiInitialisor.PlayOnLoop.StartButtonClicked -= PlayOnLoopButtonClicked;
         }
 
         private void StopClipButtonClicked(MethodParameters methodParameters)
@@ -40,12 +35,24 @@ namespace Testing
 
         private void PlayOnceButtonClicked(MethodParameters methodParameters)
         {
+            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group);
+            AudioManager.Instance.PlayOnce(audioClip, group, parameters.Pitch, parameters.Volume);
+        }
+        
+        private void PlayOnLoopButtonClicked(MethodParameters methodParameters)
+        {
+            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group);
+            AudioManager.Instance.PlayOnLoop(audioClip, group, parameters.Pitch, parameters.Volume);
+        }
+
+        private PlayClipMethodParameters GetPlayClipMethodParameters(MethodParameters methodParameters, out AudioClip audioClip, out SoundType group)
+        {
             PlayClipMethodParameters parameters = (PlayClipMethodParameters)methodParameters;
             
-            AudioClip audioClip = uiInitialisor.GetAudioClipByName(parameters.AudioClipName);
-            SoundType group = GetGroupFromName(parameters.GroupName);
+            audioClip = uiInitialisor.GetAudioClipByName(parameters.AudioClipName);
+            group = GetGroupFromName(parameters.GroupName);
 
-            AudioManager.Instance.PlayOnce(audioClip, group, parameters.Pitch, parameters.Volume);
+            return parameters;
         }
 
         private SoundType GetGroupFromName(string groupName)
