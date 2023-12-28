@@ -17,9 +17,6 @@ namespace Testing
 
         [SerializeField]
         private AudioClip[] audioClips;
-        
-        private const string ClipFieldName = "Clip";
-        private const string GroupFieldName = "Group";
 
         private void Start()
         {
@@ -34,11 +31,10 @@ namespace Testing
         private void Initialise()
         {
             stopClip.InitialiseSelf();
-            stopClip.InitialiseClips(ClipFieldName, GetAudioClipNames());
-            
+            stopClip.InitialiseClips(GetAudioClipNames());
+
             playOnce.InitialiseSelf();
-            playOnce.InitialiseClips(ClipFieldName, GetAudioClipNames());
-            playOnce.InitialiseGroups(GroupFieldName, GetAudioGroupNames());
+            playOnce.Initialise(GetAudioClipNames(), GetAudioGroupNames());
         }
 
         private List<string> GetAudioClipNames()
@@ -49,7 +45,7 @@ namespace Testing
         private List<string> GetAudioGroupNames()
         {
             List<string> names = new List<string>();
-            
+
             foreach (SoundType soundType in Enum.GetValues(typeof(SoundType)))
                 names.Add(soundType.ToString());
 
