@@ -5,13 +5,8 @@ using UnityEngine;
 
 namespace Testing.Fields
 {
-    public class DropdownField : MonoBehaviour
+    public class DropdownField : Field
     {
-        [SerializeField]
-        private TMP_Text fieldNameText;
-
-        public string FieldName { get; private set; }
-
         [SerializeField]
         private TMP_Dropdown dropdown;
 
@@ -22,12 +17,6 @@ namespace Testing.Fields
         {
             SetFieldName(name);
             SetDropdownOptions(options);
-        }
-
-        public void SetFieldName(string fieldName)
-        {
-            FieldName = fieldName;
-            fieldNameText.SetTextBetweenTags(fieldName);
         }
 
         public void SetDropdownOptions(List<string> options)
