@@ -30,11 +30,13 @@ namespace SimpleAudioManager
 
             Assert.IsNotNull(audioMixer, $"You need to specify an {nameof(AudioMixer)} for the {nameof(AudioManager)}!");
 
+#if UNITY_EDITOR
             foreach (SoundType soundType in Enum.GetValues(typeof(SoundType)))
             {
                 Assert.IsTrue(TryGetAudioMixerGroupForSoundType(soundType, out _),
                     $"The audio group {soundType} is not present on the specified {nameof(AudioMixer)}. You can add groups by going to Window > Audio > AudioMixer.");
             }
+#endif
         }
 
         private void Start()
@@ -42,7 +44,7 @@ namespace SimpleAudioManager
             // TODO test fading on scene change, fade out playing sources and stop all looping ones
             // TODO allow to load volume from init method
         }
-        
+
         private void OnDestroy()
         {
             StopAllLoopingAudioSources();
@@ -68,7 +70,7 @@ namespace SimpleAudioManager
         {
             PlayOnce(clip, soundType, GetRandomPitchShift(pitchShiftType), volume);
         }
-        
+
         /// <summary>
         /// Plays the given audio clip with the specified parameters on loop.
         /// To stop the clip again, use <see cref="StopAudioClip"/>.
@@ -90,7 +92,7 @@ namespace SimpleAudioManager
         {
             PlayOnLoop(clip, soundType, GetRandomPitchShift(pitchShiftType), volume);
         }
-        
+
         /// <summary>
         /// Plays the given audio clip with the specified parameters at the given position.
         /// </summary>
@@ -110,7 +112,7 @@ namespace SimpleAudioManager
         {
             PlayAudioClipAtPosition(clip, position, soundType, GetRandomPitchShift(pitchShiftType), volume, loop);
         }
-        
+
         /// <summary>
         /// Stops the given audio clip. Only works for looping clips.
         /// </summary>
@@ -125,7 +127,7 @@ namespace SimpleAudioManager
 
             StopAudioSource(audioSource);
         }
-        
+
         /// <summary>
         /// Sets the volume of the audio group corresponding to the sound type.
         /// </summary>
@@ -138,10 +140,10 @@ namespace SimpleAudioManager
                 Debug.LogError($"Tried to set volume on invalid soundType: {soundType}. You need to configure the corresponding group in the audio mixer first.");
                 return;
             }
-            
+
             audioMixer.SetFloat(parameterName, decibel);
         }
-        
+
         /// <summary>
         /// Smoothly fades the volume of the whole group corresponding to the given sound type to the specified value.
         /// </summary>
@@ -152,7 +154,7 @@ namespace SimpleAudioManager
                 Debug.LogError($"Tried to fade volume of invalid group: {soundType}. You need to configure the corresponding group in the audio mixer first.");
                 return;
             }
-            
+
             audioMixer.GetFloat(groupName, out float start);
             start = DecibelHelper.DecibelToLinear(start);
 
@@ -215,21 +217,21 @@ namespace SimpleAudioManager
                 Debug.LogError($"Tried to play audio clip with invalid soundType: {soundType}. You need to configure the corresponding group in the audio mixer first.");
                 audioMixerGroup = GetDefaultAudioMixerGroup();
             }
-            
+
             audioSource.clip = clip;
             audioSource.outputAudioMixerGroup = audioMixerGroup;
             audioSource.loop = loop;
             audioSource.pitch = pitch;
             audioSource.transform.position = position;
             audioSource.spatialBlend = is3D ? 1f : 0f;
-            
+
 #if MUTE_AUDIO_MANAGER
             audioSource.volume = 0;
 #else
             audioSource.volume = volume;
 #endif
         }
-        
+
         private bool TryGetNameFromSoundType(SoundType soundType, out string name)
         {
             switch (soundType)
@@ -293,7 +295,7 @@ namespace SimpleAudioManager
         {
             audioSources.Release(audioSource);
         }
-        
+
         private void StopAudioSource(AudioSource audioSource)
         {
             if (audioSource == null)
@@ -302,7 +304,7 @@ namespace SimpleAudioManager
             audioSource.Stop();
             ReturnAudioSourceToPool(audioSource);
         }
-        
+
         private void StopAllLoopingAudioSources(float delay = 0)
         {
             foreach (var loopingAudioSource in loopingAudioSources)
@@ -347,7 +349,7 @@ namespace SimpleAudioManager
                 Debug.LogError($"Tried to get pitch range for invalid pitch shift type: {pitchShiftType}");
                 return 0;
             }
-            
+
             return pitchRange.Random();
         }
 
@@ -376,7 +378,7 @@ namespace SimpleAudioManager
         private bool TryGetExposedParameterNameFromSoundType(SoundType soundType, out string parameterName)
         {
             parameterName = String.Empty;
-            
+
             if (!TryGetNameFromSoundType(soundType, out string groupName))
                 return false;
 
