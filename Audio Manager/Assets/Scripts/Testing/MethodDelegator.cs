@@ -2,6 +2,7 @@ using System;
 using SimpleAudioManager;
 using Testing.MethodConfigurationMenus.MethodParameters;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Testing
 {
@@ -18,6 +19,7 @@ namespace Testing
             uiInitialisor.PlayAtPosition.StartButtonClicked += PlayAtPositionButtonClicked;
             uiInitialisor.SetVolume.StartButtonClicked += SetVolumeButtonClicked;
             uiInitialisor.FadeGroupVolume.StartButtonClicked += FadeGroupVolumeButtonClicked;
+            uiInitialisor.ReloadScene.ButtonClicked += ReloadSceneButtonClicked;
         }
 
         private void OnDestroy()
@@ -28,6 +30,7 @@ namespace Testing
             uiInitialisor.PlayAtPosition.StartButtonClicked -= PlayAtPositionButtonClicked;
             uiInitialisor.SetVolume.StartButtonClicked -= SetVolumeButtonClicked;
             uiInitialisor.FadeGroupVolume.StartButtonClicked -= FadeGroupVolumeButtonClicked;
+            uiInitialisor.ReloadScene.ButtonClicked -= ReloadSceneButtonClicked;
         }
 
         private void StopClipButtonClicked(MethodParameters methodParameters)
@@ -68,6 +71,11 @@ namespace Testing
         {
             FadeGroupVolumeMethodParameters parameters = (FadeGroupVolumeMethodParameters)methodParameters;
             AudioManager.Instance.FadeGroupVolume(parameters.FromTo.x, parameters.FromTo.y, parameters.Duration, GetGroupFromName(parameters.GroupName));
+        }
+        
+        private void ReloadSceneButtonClicked()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         private PlayClipMethodParameters GetPlayClipMethodParameters(MethodParameters methodParameters, out AudioClip audioClip, out SoundType group)
