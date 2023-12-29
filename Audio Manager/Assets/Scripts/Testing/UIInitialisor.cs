@@ -39,7 +39,7 @@ namespace Testing
 
         public AudioClip GetAudioClipByName(string name)
         {
-            return audioClips.FirstOrDefault(c => c.name == name);
+            return audioClips.FirstOrDefault(c => c != null && c.name == name);
         }
 
         private void Initialise()
@@ -53,7 +53,7 @@ namespace Testing
 
         private List<string> GetAudioClipNames()
         {
-            return audioClips.Select(c => c.name).ToList();
+            return audioClips.Select(c => c == null ? "NULL" : c.name).ToList();
         }
 
         private List<string> GetAudioGroupNames()
