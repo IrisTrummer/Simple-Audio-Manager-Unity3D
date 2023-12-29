@@ -1,6 +1,5 @@
 using System;
 using SimpleAudioManager;
-using Testing.MethodConfigurationMenus;
 using Testing.MethodConfigurationMenus.MethodParameters;
 using UnityEngine;
 
@@ -16,6 +15,7 @@ namespace Testing
             uiInitialisor.StopClip.StartButtonClicked += StopClipButtonClicked;
             uiInitialisor.PlayOnce.StartButtonClicked += PlayOnceButtonClicked;
             uiInitialisor.PlayOnLoop.StartButtonClicked += PlayOnLoopButtonClicked;
+            uiInitialisor.PlayAtPosition.StartButtonClicked += PlayAtPositionButtonClicked;
         }
 
         private void OnDestroy()
@@ -23,6 +23,7 @@ namespace Testing
             uiInitialisor.StopClip.StartButtonClicked -= StopClipButtonClicked;
             uiInitialisor.PlayOnce.StartButtonClicked -= PlayOnceButtonClicked;
             uiInitialisor.PlayOnLoop.StartButtonClicked -= PlayOnLoopButtonClicked;
+            uiInitialisor.PlayAtPosition.StartButtonClicked -= PlayAtPositionButtonClicked;
         }
 
         private void StopClipButtonClicked(MethodParameters methodParameters)
@@ -43,6 +44,14 @@ namespace Testing
         {
             PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group);
             AudioManager.Instance.PlayOnLoop(audioClip, group, parameters.Pitch, parameters.Volume);
+        }
+        
+        private void PlayAtPositionButtonClicked(MethodParameters methodParameters)
+        {
+            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group);
+            PlayClipAtPositionMethodParameters positionParameters = (PlayClipAtPositionMethodParameters)parameters;
+            
+            AudioManager.Instance.PlayAudioClipAtPosition(audioClip, positionParameters.Position, group, parameters.Pitch, parameters.Volume, positionParameters.Loop);
         }
 
         private PlayClipMethodParameters GetPlayClipMethodParameters(MethodParameters methodParameters, out AudioClip audioClip, out SoundType group)
