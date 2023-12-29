@@ -9,7 +9,7 @@ namespace Testing.MethodConfigurationMenus
     {
         [SerializeField]
         private DropdownField clipDropdownField;
-        
+
         [SerializeField]
         private DropdownField groupDropdownField;
 
@@ -18,13 +18,13 @@ namespace Testing.MethodConfigurationMenus
 
         [SerializeField]
         private FloatField pitchField;
-        
+
         // TODO random pitch
 
-        public void Initialise(string methodName, List<string> clipNames, List<string> groupNames, float volumeDefaultValue, float pitchDefaultValue)
+        public virtual void Initialise(string methodName, List<string> clipNames, List<string> groupNames, float volumeDefaultValue, float pitchDefaultValue)
         {
             SetMethodName(methodName);
-            
+
             clipDropdownField.Initialise(FieldNames.Clip, clipNames);
             groupDropdownField.Initialise(FieldNames.Group, groupNames);
             volumeField.Initialise(FieldNames.Volume, volumeDefaultValue);
@@ -33,7 +33,8 @@ namespace Testing.MethodConfigurationMenus
 
         protected override MethodParameters.MethodParameters GetMethodParameters()
         {
-            return new PlayClipMethodParameters(clipDropdownField.GetCurrentlySelectedOption(), groupDropdownField.GetCurrentlySelectedOption(), volumeField.GetCurrentValue(), pitchField.GetCurrentValue());
+            return new PlayClipMethodParameters(clipDropdownField.GetCurrentlySelectedOption(), groupDropdownField.GetCurrentlySelectedOption(), volumeField.GetCurrentValue(),
+                pitchField.GetCurrentValue());
         }
     }
 }

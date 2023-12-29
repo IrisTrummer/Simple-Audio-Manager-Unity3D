@@ -25,6 +25,11 @@ namespace Testing
         public PlayClipMethodConfigurationMenu PlayOnLoop => playOnLoop;
 
         [SerializeField]
+        private PlayClipAtPositionMethodConfigurationMenu playAtPosition;
+
+        public PlayClipAtPositionMethodConfigurationMenu PlayAtPosition => playAtPosition;
+
+        [SerializeField]
         private AudioClip[] audioClips;
 
         private void Start()
@@ -43,6 +48,7 @@ namespace Testing
             stopClip.InitialiseClips(nameof(AudioManager.StopAudioClip), GetAudioClipNames());
             InitialisePlayConfiguration(playOnce, nameof(AudioManager.PlayOnce));
             InitialisePlayConfiguration(playOnLoop, nameof(AudioManager.PlayOnLoop));
+            InitialisePlayConfiguration(playAtPosition, nameof(AudioManager.PlayAudioClipAtPosition));
         }
 
         private List<string> GetAudioClipNames()
