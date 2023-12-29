@@ -30,7 +30,15 @@ namespace Testing
         public PlayClipAtPositionMethodConfigurationMenu PlayAtPosition => playAtPosition;
 
         [SerializeField]
+        private SetVolumeMethodConfigurationMenu setVolume;
+
+        public SetVolumeMethodConfigurationMenu SetVolume => setVolume;
+
+        [SerializeField]
         private AudioClip[] audioClips;
+
+        private const float VolumeDefaultValue = 1f;
+        private const float PitchDefaultValue = 1f;
 
         private void Start()
         {
@@ -45,10 +53,11 @@ namespace Testing
         private void Initialise()
         {
             // TODO add spaces for method names
-            stopClip.InitialiseClips(nameof(AudioManager.StopAudioClip), GetAudioClipNames());
+            stopClip.Initialise(nameof(AudioManager.StopAudioClip), GetAudioClipNames());
             InitialisePlayConfiguration(playOnce, nameof(AudioManager.PlayOnce));
             InitialisePlayConfiguration(playOnLoop, nameof(AudioManager.PlayOnLoop));
             InitialisePlayConfiguration(playAtPosition, nameof(AudioManager.PlayAudioClipAtPosition));
+            setVolume.Initialise(nameof(AudioManager.SetVolume), GetAudioGroupNames(), VolumeDefaultValue);
         }
 
         private List<string> GetAudioClipNames()
@@ -68,7 +77,7 @@ namespace Testing
 
         private void InitialisePlayConfiguration(PlayClipMethodConfigurationMenu configuration, string methodName)
         {
-            configuration.Initialise(methodName, GetAudioClipNames(), GetAudioGroupNames(), 1, 1);
+            configuration.Initialise(methodName, GetAudioClipNames(), GetAudioGroupNames(), VolumeDefaultValue, PitchDefaultValue);
         }
     }
 }

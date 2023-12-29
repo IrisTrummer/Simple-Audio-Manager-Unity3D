@@ -10,7 +10,7 @@ namespace Testing.MethodConfigurationMenus
         [SerializeField]
         private DropdownField dropdownField;
 
-        public void InitialiseClips(string methodName, List<string> clipNames)
+        public void Initialise(string methodName, List<string> clipNames)
         {
             SetMethodName(methodName);
             dropdownField.Initialise(FieldNames.Clip, clipNames);
@@ -18,7 +18,7 @@ namespace Testing.MethodConfigurationMenus
 
         protected override MethodParameters.MethodParameters GetMethodParameters()
         {
-            return new StopClipMethodParameters(dropdownField.GetCurrentlySelectedOption());
+            return new StopClipMethodParameters(dropdownField.GetCurrentValue());
         }
     }
 }
