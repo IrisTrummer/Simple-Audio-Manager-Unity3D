@@ -16,4 +16,4 @@ openupm add com.iristrummer.simple-audio-manager
 ```
 
 ## Getting Started
-TODO how to setup (AudioMixer asset, Audio Mixer groups, AudioManager on empty GameObject in scene, ...)
+TODO how to setup (AudioMixer asset, Audio Mixer groups, Expose AudioMixer volume (click on group in inspector, right click volume "Expose volume to script", remame to GroupNameVolume) AudioManager on empty GameObject in scene, ...)
