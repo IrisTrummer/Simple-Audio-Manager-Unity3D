@@ -33,8 +33,7 @@ namespace Testing.MethodConfigurationMenus
 
         protected override MethodParameters.MethodParameters GetMethodParameters()
         {
-            return new PlayClipMethodParameters(clipDropdownField.GetCurrentlySelectedOption(), groupDropdownField.GetCurrentlySelectedOption(), volumeField.GetCurrentValue(),
-                pitchField.GetCurrentValue());
+            return new PlayClipMethodParameters(clipDropdownField.GetCurrentValue(), groupDropdownField.GetCurrentValue(), volumeField.GetCurrentValue(), pitchField.GetCurrentValue());
         }
     }
 }

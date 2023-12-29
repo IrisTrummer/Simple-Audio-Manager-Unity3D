@@ -31,7 +31,7 @@ namespace Testing.Fields
             dropdown.AddOptions(options);
         }
 
-        public string GetCurrentlySelectedOption()
+        public string GetCurrentValue()
         {
             return dropdown.options[dropdown.value].text.GetTextBetweenTag();
         }
