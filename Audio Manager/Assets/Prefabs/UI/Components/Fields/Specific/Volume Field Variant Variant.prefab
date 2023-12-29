@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2167785411283633510, guid: 73cd172cd51d0354895fb8292611024e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 2167785411283633510, guid: 73cd172cd51d0354895fb8292611024e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 2167785411283633510, guid: 73cd172cd51d0354895fb8292611024e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -93,7 +93,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2167785411283633511, guid: 73cd172cd51d0354895fb8292611024e, type: 3}
       propertyPath: m_Name
-      value: Volume Field Variant
+      value: Volume Field Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2167785412041931848, guid: 73cd172cd51d0354895fb8292611024e, type: 3}
       propertyPath: m_AnchorMax.y
