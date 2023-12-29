@@ -15,6 +15,8 @@ The package can be installed using [OpenUPM](https://openupm.com/packages/com.ir
 openupm add com.iristrummer.simple-audio-manager
 ```
 
+TODO installation instructions demo scene
+
 ## Getting Started
 TODO how to setup (AudioMixer asset, Audio Mixer groups, Expose AudioMixer volume (click on group in inspector, right click volume "Expose volume to script", remame to GroupNameVolume) AudioManager on empty GameObject in scene, ...)
 
