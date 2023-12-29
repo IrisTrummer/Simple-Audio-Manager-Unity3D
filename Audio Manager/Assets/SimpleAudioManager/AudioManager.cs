@@ -133,13 +133,13 @@ namespace SimpleAudioManager
         {
             float decibel = DecibelHelper.LinearToDecibel(value);
 
-            if (!TryGetNameFromSoundType(soundType, out string groupName))
+            if (!TryGetExposedParameterNameFromSoundType(soundType, out string parameterName))
             {
                 Debug.LogError($"Tried to set volume on invalid soundType: {soundType}. You need to configure the corresponding group in the audio mixer first.");
                 return;
             }
             
-            audioMixer.SetFloat(groupName, decibel);
+            audioMixer.SetFloat(parameterName, decibel);
         }
         
         /// <summary>
@@ -371,6 +371,17 @@ namespace SimpleAudioManager
 
                 yield return null;
             }
+        }
+
+        private bool TryGetExposedParameterNameFromSoundType(SoundType soundType, out string parameterName)
+        {
+            parameterName = String.Empty;
+            
+            if (!TryGetNameFromSoundType(soundType, out string groupName))
+                return false;
+
+            parameterName = $"{groupName}Volume";
+            return true;
         }
     }
 }
