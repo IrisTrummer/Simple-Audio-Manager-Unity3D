@@ -80,8 +80,6 @@ namespace SimpleAudioManager
 
             AudioSource audioSource = SetupAudioSource(clip, Vector3.zero, soundType, volume, false, true, pitch);
             Play(audioSource);
-
-            loopingAudioSources.Add(clip, audioSource);
         }
 
         /// <summary>
@@ -281,7 +279,11 @@ namespace SimpleAudioManager
         {
             audioSource.Play();
 
-            if (!audioSource.loop)
+            if (audioSource.loop)
+            {
+                loopingAudioSources.Add(audioSource.clip, audioSource);
+            }
+            else
             {
                 Delay.Create(audioSource.clip.length, () => ReturnAudioSourceToPool(audioSource));
             }
