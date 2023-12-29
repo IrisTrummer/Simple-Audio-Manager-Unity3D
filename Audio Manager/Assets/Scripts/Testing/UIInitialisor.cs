@@ -40,6 +40,11 @@ namespace Testing
         public FadeGroupVolumeMethodConfigurationMenu FadeGroupVolume => fadeGroupVolume;
 
         [SerializeField]
+        private MethodButton reloadScene;
+
+        public MethodButton ReloadScene => reloadScene;
+
+        [SerializeField]
         private AudioClip[] audioClips;
 
         private const float VolumeDefaultValue = 1f;
