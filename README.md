@@ -4,7 +4,7 @@ A simple-to-use audio manager for Unity
 TODO openUPM shield
 
 ## Usage
-TODO usage examples
+TODO usage examples (Methods, Zenject, ...)
 
 ## Installation
 
