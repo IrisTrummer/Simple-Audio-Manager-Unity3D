@@ -18,7 +18,17 @@ openupm add com.iristrummer.simple-audio-manager
 TODO installation instructions demo scene
 
 ## Getting Started
-TODO how to setup (AudioMixer asset, Audio Mixer groups, Expose AudioMixer volume (click on group in inspector, right click volume "Expose volume to script", remame to GroupNameVolume) AudioManager on empty GameObject in scene, ...)
+
+### Setting up the Audio Mixer
+1. Create a new audio mixer asset (right click in the Unity Project window -> Create -> Audio Mixer).
+2. Open the Audio Mixer window (Window -> Audio -> Audio Mixer).
+3. In the Audio Mixer window, click the "+"-icon next to the Groups tab to add a new group, name the group "Background". Add two more groups in the same way with the names "Effects" and "UI".
+4. Click on the Master group. In the hierarchy window, right click the volume field and select "Expose 'Volume (of Master)' to script". Repeat this procedure for the three groups you just created.
+5. In the audio mixer on the top right click on the "Exposed Parameters" button. Rename each parameter to its group Name + "Volume", for example "MasterVolume"
+
+### Setting up the Audio Manager
+6. Create a new empty game object and add the AudioManager script to it
+7. In the Audio Mixer field of the script, add the Audio Mixer asset you just created
 
 ## Acknowledgements
 
