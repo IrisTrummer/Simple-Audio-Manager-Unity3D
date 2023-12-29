@@ -35,6 +35,11 @@ namespace Testing
         public SetVolumeMethodConfigurationMenu SetVolume => setVolume;
 
         [SerializeField]
+        private FadeGroupVolumeMethodConfigurationMenu fadeGroupVolume;
+
+        public FadeGroupVolumeMethodConfigurationMenu FadeGroupVolume => fadeGroupVolume;
+
+        [SerializeField]
         private AudioClip[] audioClips;
 
         private const float VolumeDefaultValue = 1f;
@@ -58,6 +63,7 @@ namespace Testing
             InitialisePlayConfiguration(playOnLoop, nameof(AudioManager.PlayOnLoop));
             InitialisePlayConfiguration(playAtPosition, nameof(AudioManager.PlayAudioClipAtPosition));
             setVolume.Initialise(nameof(AudioManager.SetVolume), GetAudioGroupNames(), VolumeDefaultValue);
+            fadeGroupVolume.Initialise(nameof(AudioManager.FadeGroupVolume), GetAudioGroupNames(), new Vector2(0, 1), 1);
         }
 
         private List<string> GetAudioClipNames()

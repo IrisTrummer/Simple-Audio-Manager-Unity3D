@@ -16,6 +16,8 @@ namespace Testing
             uiInitialisor.PlayOnce.StartButtonClicked += PlayOnceButtonClicked;
             uiInitialisor.PlayOnLoop.StartButtonClicked += PlayOnLoopButtonClicked;
             uiInitialisor.PlayAtPosition.StartButtonClicked += PlayAtPositionButtonClicked;
+            uiInitialisor.SetVolume.StartButtonClicked += SetVolumeButtonClicked;
+            uiInitialisor.FadeGroupVolume.StartButtonClicked += FadeGroupVolumeButtonClicked;
         }
 
         private void OnDestroy()
@@ -24,6 +26,8 @@ namespace Testing
             uiInitialisor.PlayOnce.StartButtonClicked -= PlayOnceButtonClicked;
             uiInitialisor.PlayOnLoop.StartButtonClicked -= PlayOnLoopButtonClicked;
             uiInitialisor.PlayAtPosition.StartButtonClicked -= PlayAtPositionButtonClicked;
+            uiInitialisor.SetVolume.StartButtonClicked -= SetVolumeButtonClicked;
+            uiInitialisor.FadeGroupVolume.StartButtonClicked -= FadeGroupVolumeButtonClicked;
         }
 
         private void StopClipButtonClicked(MethodParameters methodParameters)
@@ -52,6 +56,18 @@ namespace Testing
             PlayClipAtPositionMethodParameters positionParameters = (PlayClipAtPositionMethodParameters)parameters;
             
             AudioManager.Instance.PlayAudioClipAtPosition(audioClip, positionParameters.Position, group, parameters.Pitch, parameters.Volume, positionParameters.Loop);
+        }
+        
+        private void SetVolumeButtonClicked(MethodParameters methodParameters)
+        {
+            SetVolumeMethodParameters parameters = (SetVolumeMethodParameters)methodParameters;
+            AudioManager.Instance.SetVolume(parameters.Volume, GetGroupFromName(parameters.GroupName));
+        }
+        
+        private void FadeGroupVolumeButtonClicked(MethodParameters methodParameters)
+        {
+            FadeGroupVolumeMethodParameters parameters = (FadeGroupVolumeMethodParameters)methodParameters;
+            AudioManager.Instance.FadeGroupVolume(parameters.FromTo.x, parameters.FromTo.y, parameters.Duration, GetGroupFromName(parameters.GroupName));
         }
 
         private PlayClipMethodParameters GetPlayClipMethodParameters(MethodParameters methodParameters, out AudioClip audioClip, out SoundType group)
