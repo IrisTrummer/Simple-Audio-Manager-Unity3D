@@ -15,6 +15,8 @@ namespace SimpleAudioManager
         [SerializeField]
         private AudioMixer audioMixer;
 
+        public AudioMixer AudioMixer => audioMixer;
+
         private ObjectPool<AudioSource> audioSources;
         private readonly Dictionary<AudioClip, AudioSource> loopingAudioSources = new();
 
