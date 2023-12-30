@@ -41,12 +41,6 @@ namespace SimpleAudioManager
 #endif
         }
 
-        private void Start()
-        {
-            // TODO test fading on scene change, fade out playing sources and stop all looping ones
-            // TODO allow to load volume from init method
-        }
-
         private void OnDestroy()
         {
             StopAllLoopingAudioSources();
