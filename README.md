@@ -24,7 +24,31 @@ AudioManager.Instance.FadeGroupVolumeTo(0f, 3f, SoundType.Master);
 
 You can use the `AudioPlayer` component to play audio clips directly in the scene or for setting up background music.
 
-### Dependency Injection
+## Installation
+
+The package can be installed using [OpenUPM](https://openupm.com/packages/com.iristrummer.simple-audio-manager)
+1. Install the [OpenUPM CLI](https://github.com/openupm/openupm-cli#installation)
+2. Run the following command in the command line in your project directory:
+```bash
+openupm add com.iristrummer.simple-audio-manager
+```
+
+## Getting Started
+
+### Setting up the Audio Mixer
+1. Create a new audio mixer asset (right click in the Unity project window -> Create -> Audio Mixer)
+2. Open the Audio Mixer window (Window -> Audio -> Audio Mixer)
+3. In the Audio Mixer window, click the "+"-icon next to the Groups tab to add a new group under the `Master` group, name the group `Background`. Add two more groups in the same way with the names `Effects` and `UI`
+4. Select the `Master` group. In the hierarchy window, right click the volume field and select "Expose 'Volume (of Master)' to script". Repeat this procedure for the three groups you created in the previous step
+5. In the audio mixer on the top right click on the "Exposed Parameters" button. Rename each parameter to the group name and append "Volume", for example "MasterVolume"
+
+### Setting up the Audio Manager
+6. Create a new empty game object and add the AudioManager script to it
+7. In the Audio Mixer field of the script, add the Audio Mixer asset you just created
+
+### Dependency Injection Frameworks
+
+If you plan on using your own dependency injection framework follow the instructions below.
 
 Without any modification you access the instance of the `AudioManager` via the singleton `AudioManager.Instance`. If you, however, want to use a dependency injection framework e.g. Zenject to access the instance you need to do the following:
 
@@ -41,30 +65,6 @@ public class AudioPlayer : AudioPlayerBase
     protected override AudioManager AudioManager => audioManager;
 }
 ```
-
-## Installation
-
-The package can be installed using [OpenUPM](https://openupm.com/packages/com.iristrummer.simple-audio-manager)
-1. Install the [OpenUPM CLI](https://github.com/openupm/openupm-cli#installation)
-2. Run the following command in the command line in your project directory:
-```bash
-openupm add com.iristrummer.simple-audio-manager
-```
-
-## Getting Started
-
-### Setting up the Audio Mixer
-1. Create a new audio mixer asset (right click in the Unity project window -> Create -> Audio Mixer)
-2. Open the Audio Mixer window (Window -> Audio -> Audio Mixer)
-3. In the Audio Mixer window, click the "+"-icon next to the Groups tab to add a new group, name the group "Background". Add two more groups in the same way with the names "Effects" and "UI"
-4. Click on the Master group. In the hierarchy window, right click the volume field and select "Expose 'Volume (of Master)' to script". Repeat this procedure for the three groups you just created
-5. In the audio mixer on the top right click on the "Exposed Parameters" button. Rename each parameter to its group name + "Volume", for example "MasterVolume"
-
-### Setting up the Audio Manager
-6. Create a new empty game object and add the AudioManager script to it
-7. In the Audio Mixer field of the script, add the Audio Mixer asset you just created
-
-If you plan on using your own dependency injection framework see the instructions above on how to set it up.
 
 ## Acknowledgements
 
