@@ -8,8 +8,6 @@ namespace Testing
         [SerializeField]
         private AudioSourceProvider audioSourceProvider;
         
-        // TODO also display clip parameters (loop, pitch, volume, maybe position)
-
         protected override AudioSource[] GetReferencesSources()
         {
             return audioSourceProvider.GetActiveAudioSources();
@@ -18,7 +16,7 @@ namespace Testing
         protected override DebugInformationElement CreateNewElement(AudioSource audioSource)
         {
             AudioSourceDebugInformationElement element = (AudioSourceDebugInformationElement)base.CreateNewElement(audioSource);
-            element.TrackTimeOfAudioSource(audioSource);
+            element.SetReferenceAudioSource(audioSource);
 
             return element;
         }

@@ -1,6 +1,7 @@
 using Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Testing
 {
@@ -11,6 +12,15 @@ namespace Testing
 
         [SerializeField]
         private float minDisplayLength = 0.1f;
+        
+        [SerializeField]
+        private Image loopIndicator;
+        
+        [SerializeField]
+        private TMP_Text pitchText;
+
+        [SerializeField]
+        private TMP_Text volumeText;
 
         private AudioSource audioSource;
 
@@ -20,15 +30,18 @@ namespace Testing
                 UpdateTime(audioSource.clip.length, audioSource.time);
         }
 
-        public void TrackTimeOfAudioSource(AudioSource audioSource)
+        public void SetReferenceAudioSource(AudioSource audioSource)
         {
             this.audioSource = audioSource;
+            loopIndicator.enabled = audioSource.loop;
+            pitchText.SetTextBetweenTags(audioSource.pitch.ToString("#0.00"));
+            volumeText.SetTextBetweenTags(audioSource.volume.ToString("#0.00"));
         }
 
         private void UpdateTime(float clipLengthSeconds, float playTimeSeconds)
         {
             float remainingTime = (clipLengthSeconds - playTimeSeconds) * 10;
-            string remainingTimeText = audioSource.clip.length >= minDisplayLength ? remainingTime.ToString("00:0") : "< 0.1s";
+            string remainingTimeText = audioSource.clip.length >= minDisplayLength ? remainingTime.ToString("00.0") : "< 0.1s";
 
             timeText.SetTextBetweenTags(remainingTimeText);
         }
