@@ -33,6 +33,8 @@ The package can be installed using [OpenUPM](https://openupm.com/packages/com.ir
 openupm add com.iristrummer.simple-audio-manager
 ```
 
+To take a look at the demo scene, clone the repository, open the Unity project under `AudioManager/` and start the Demo scene in `Assets/Scenes/DemoScene.unity`.
+
 ## Getting Started
 
 ### Setting up the Audio Mixer
