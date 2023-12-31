@@ -24,8 +24,16 @@ namespace Testing
 
         private AudioSource audioSource;
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
+            
+            if (ShouldBeKilled)
+            {
+                timeText.SetTextBetweenTags("-");
+                return;
+            }
+            
             if (audioSource != null)
                 UpdateTime(audioSource.clip.length, audioSource.time);
         }

@@ -664,6 +664,7 @@ MonoBehaviour:
   elementNameText: {fileID: 5058468041544222825}
   groupNameText: {fileID: 5058468043608905600}
   button: {fileID: 2881273568881446850}
+  minDisplayTime: 1
 --- !u!1 &5058468043608905603
 GameObject:
   m_ObjectHideFlags: 0
