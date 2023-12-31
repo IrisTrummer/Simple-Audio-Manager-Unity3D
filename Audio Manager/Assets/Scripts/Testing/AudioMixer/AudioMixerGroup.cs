@@ -17,6 +17,9 @@ namespace Testing.AudioMixer
         [SerializeField]
         private TMP_Text activeClipCountText;
 
+        [SerializeField]
+        private AudioSourceProvider audioSourceProvider;
+
         [Header("Arrow")]
         [SerializeField]
         private TMP_Text volumeText;
@@ -32,11 +35,11 @@ namespace Testing.AudioMixer
         private RectTransform volumeSampleRectRight;
 
         [SerializeField]
-        private float volumeSampleAdaptionSpeed = 4f;
+        private float volumeSampleAdaptionSpeed = 5f;
 
         private readonly float[] decibelPositionLookupTable = { 1, 0.745f, 0.431f, 0.257f, 0.129f, 0f };
 
-        private readonly float[] samples = new float[2048];
+        private readonly float[] samples = new float[1024];
         private const float MaxTopOffset = 360;
 
         private void Awake()
@@ -51,15 +54,15 @@ namespace Testing.AudioMixer
             volumeText.SetTextBetweenTags(DecibelHelper.DecibelToLinear(decibelGroupVolume).ToString("#0.##"));
             AdjustRectPositionToVolume(arrow, decibelGroupVolume, MaxTopOffset, -MaxTopOffset);
 
-            AudioSource audioSource = GetAudioSource();
-            
-            AdjustBarHeight(volumeSampleRectLeft, audioSource, 0, decibelGroupVolume);
-            AdjustBarHeight(volumeSampleRectRight, audioSource, 1, decibelGroupVolume);
+            AudioSource[] audioSources = audioSourceProvider.GetActiveAudioSourcesForSoundType(soundType);
+
+            AdjustBarHeight(volumeSampleRectLeft, audioSources, 0, decibelGroupVolume);
+            AdjustBarHeight(volumeSampleRectRight, audioSources, 1, decibelGroupVolume);
         }
 
-        private void AdjustBarHeight(RectTransform rectTransform, AudioSource audioSource, int channel, float decibelGroupVolume)
+        private void AdjustBarHeight(RectTransform rectTransform, AudioSource[] audioSources, int channel, float decibelGroupVolume)
         {
-            float sourceVolume = ComputeSourceVolume(audioSource, channel, decibelGroupVolume);
+            float sourceVolume = ComputeSourceVolume(audioSources, channel, decibelGroupVolume);
             AdjustRectPositionToVolume(rectTransform, sourceVolume);
         }
 
@@ -89,17 +92,17 @@ namespace Testing.AudioMixer
             return Mathf.Lerp(lower, upper, t);
         }
 
-        private AudioSource GetAudioSource()
+        private float ComputeSourceVolume(AudioSource[] audioSources, int channel, float channelVolumeDecibel)
         {
-            // TODO get all audioSources of the configured group
-            return AudioManager.Instance.transform.GetChild(0).GetComponent<AudioSource>();
-        }
+            float poweredSum = 0;
 
-        private float ComputeSourceVolume(AudioSource audioSource, int channel, float channelVolumeDecibel)
-        {
-            audioSource.GetOutputData(samples, channel);
+            foreach (AudioSource audioSource in audioSources)
+            {
+                audioSource.GetOutputData(samples, channel);
+                poweredSum += samples.Sum(s => Mathf.Pow(s, 2));
+            }
 
-            float rms = Mathf.Sqrt(samples.Sum(s => Mathf.Pow(s, 2)) / samples.Length);
+            float rms = Mathf.Sqrt(poweredSum / (audioSources.Length * samples.Length));
             return DecibelHelper.LinearToDecibel(rms * DecibelHelper.DecibelToLinear(channelVolumeDecibel));
         }
     }
