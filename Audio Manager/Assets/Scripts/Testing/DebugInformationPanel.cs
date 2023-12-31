@@ -66,7 +66,7 @@ namespace Testing
             elementsToDelete.Clear();
         }
 
-        private void CreateNewElement(AudioSource audioSource)
+        protected virtual DebugInformationElement CreateNewElement(AudioSource audioSource)
         {
             DebugInformationElement element = Instantiate(debugInformationElementPrefab, elementParent);
             element.Configure(SpawnedElements.Count + 1, audioSource.clip.name, audioSource.outputAudioMixerGroup.name);
@@ -79,6 +79,8 @@ namespace Testing
                 overflowIndicator.gameObject.SetActive(true);
                 element.gameObject.SetActive(false);
             }
+
+            return element;
         }
 
         private void DeleteElement(AudioSource audioSource)

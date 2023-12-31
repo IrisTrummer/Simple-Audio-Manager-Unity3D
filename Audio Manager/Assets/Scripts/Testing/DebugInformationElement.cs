@@ -19,6 +19,8 @@ namespace Testing
         
         [SerializeField]
         private Button button;
+        
+        // TODO introduce min time so that clips with very short duration can still be read
 
         public int Index { get; private set; }
         
