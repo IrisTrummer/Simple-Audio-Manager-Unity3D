@@ -109,7 +109,7 @@ namespace Testing.AudioMixer
                 poweredSum += samples.Sum(s => Mathf.Pow(s, 2));
             }
 
-            float rms = Mathf.Sqrt(poweredSum / (audioSources.Length * samples.Length));
+            float rms = Mathf.Sqrt(poweredSum / (Mathf.Max(audioSources.Length, 1) * samples.Length));
             return DecibelHelper.LinearToDecibel(rms * DecibelHelper.DecibelToLinear(channelVolumeDecibel));
         }
     }
