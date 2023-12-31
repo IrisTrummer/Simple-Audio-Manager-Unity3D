@@ -13,8 +13,6 @@ namespace Testing.MethodConfigurationMenus
         [SerializeField]
         private TMP_Text methodNameText;
 
-        public string MethodName { get; private set; }
-
         [SerializeField]
         private Button startButton;
 
@@ -32,8 +30,7 @@ namespace Testing.MethodConfigurationMenus
         
         protected void SetMethodName(string methodName)
         {
-            MethodName = methodName;
-            methodNameText.SetTextBetweenTags(methodName);
+            methodNameText.SetTextBetweenTags(methodName.WithSpacesBetweenCapitalLetters());
         }
 
         protected abstract MethodParameters.MethodParameters GetMethodParameters();
