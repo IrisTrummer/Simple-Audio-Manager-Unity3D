@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Core;
 using SimpleAudioManager;
@@ -93,7 +94,7 @@ namespace Testing.AudioMixer
             float upper = decibelPositionLookupTable[Mathf.Clamp(Mathf.FloorToInt((volume - 20.01f) / -20f), 0, decibelPositionLookupTable.Length - 1)];
 
             float t = ((volume + 80) / 20).Decimals();
-            if (Mathf.Approximately(t, 0))
+            if (Math.Abs(t - 0) < 0.01f)
                 t = 1f;
 
             return Mathf.Lerp(lower, upper, t);
