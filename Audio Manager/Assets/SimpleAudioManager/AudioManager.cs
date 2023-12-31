@@ -129,6 +129,7 @@ namespace SimpleAudioManager
         /// </summary>
         public void SetVolume(float value, SoundType soundType)
         {
+            value = Mathf.Max(0, value);
             float decibel = DecibelHelper.LinearToDecibel(value);
 
             if (!TryGetExposedParameterNameFromSoundType(soundType, out string parameterName))
