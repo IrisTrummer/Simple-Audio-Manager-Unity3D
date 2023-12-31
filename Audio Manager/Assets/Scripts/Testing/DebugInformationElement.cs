@@ -19,21 +19,44 @@ namespace Testing
         
         [SerializeField]
         private Button button;
-        
-        // TODO introduce min time so that clips with very short duration can still be read
 
+        [SerializeField]
+        private float minDisplayTime = 1f;
+        
         public int Index { get; private set; }
         
         public Action<DebugInformationElement> ButtonPress;
+        public Action<DebugInformationElement> ReadyForDestruction;
 
-        private void Awake()
+        protected bool ShouldBeKilled;
+        
+        private float displayTime;
+
+        protected virtual void Awake()
         {
             button.onClick.AddListener(RaiseButtonPressedEvent);
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             button.onClick.RemoveListener(RaiseButtonPressedEvent);
+        }
+        
+        protected virtual void Update()
+        {
+            displayTime += Time.deltaTime;
+            
+            if (displayTime >= minDisplayTime && ShouldBeKilled)
+                ReadyForDestruction?.Invoke(this);
+        }
+
+        public void Kill()
+        {
+            ShouldBeKilled = true;
+            button.enabled = false;
+            
+            if (displayTime >= minDisplayTime)
+                ReadyForDestruction?.Invoke(this);
         }
 
         public void Configure(int index, string name, string groupName)
@@ -46,7 +69,7 @@ namespace Testing
         public void SetIndex(int index)
         {
             Index = index;
-            indexText.SetTextBetweenTags(index.ToString());
+            indexText.SetTextBetweenTags(index >= 0 ? index.ToString() : "-");
         }
 
         public void SetName(string name)

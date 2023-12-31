@@ -1287,6 +1287,7 @@ MonoBehaviour:
   elementNameText: {fileID: 5727038984410653842}
   groupNameText: {fileID: 5727038982480329595}
   button: {fileID: 3365765026174608185}
+  minDisplayTime: 1
   timeText: {fileID: 7340006332136600743}
   minDisplayLength: 0.1
   loopIndicator: {fileID: 1492007743895092501}

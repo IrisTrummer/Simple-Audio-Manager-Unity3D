@@ -85,13 +85,11 @@ namespace Testing
 
         private void DeleteElement(AudioSource audioSource)
         {
-            if (!SpawnedElements.TryGetValue(audioSource, out DebugInformationElement element))
+            if (!SpawnedElements.Remove(audioSource, out DebugInformationElement element))
                 return;
 
-            Destroy(element.gameObject);
-            SpawnedElements.Remove(audioSource);
             element.ButtonPress -= OnButtonPressed;
-
+            
             foreach (var e in SpawnedElements)
             {
                 if (e.Value.Index >= element.Index)
@@ -101,6 +99,15 @@ namespace Testing
             }
 
             overflowIndicator.gameObject.SetActive(SpawnedElements.Count > maxElementCount);
+            
+            element.ReadyForDestruction += DestroyElement;
+            element.Kill();
+        }
+
+        private void DestroyElement(DebugInformationElement element)
+        {
+            element.ReadyForDestruction -= DestroyElement;
+            Destroy(element.gameObject);
         }
     }
 }
