@@ -62,7 +62,6 @@ namespace Testing
 
         private void Initialise()
         {
-            // TODO add spaces for method names
             stopClip.Initialise(nameof(AudioManager.StopAudioClip), GetAudioClipNames());
             InitialisePlayConfiguration(playOnce, nameof(AudioManager.PlayOnce));
             InitialisePlayConfiguration(playOnLoop, nameof(AudioManager.PlayOnLoop));
