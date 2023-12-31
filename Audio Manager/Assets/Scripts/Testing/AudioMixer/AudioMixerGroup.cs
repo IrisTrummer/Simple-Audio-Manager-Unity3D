@@ -9,16 +9,21 @@ namespace Testing.AudioMixer
     public class AudioMixerGroup : MonoBehaviour
     {
         [SerializeField]
+        private AudioSourceProvider audioSourceProvider;
+        
+        [Space]
+        [SerializeField]
         private SoundType soundType;
 
         [SerializeField]
         private TMP_Text groupNameText;
-
+        
+        [Header("Active Clip Count")]
         [SerializeField]
         private TMP_Text activeClipCountText;
 
         [SerializeField]
-        private AudioSourceProvider audioSourceProvider;
+        private TMP_Text activeClipText;
 
         [Header("Arrow")]
         [SerializeField]
@@ -55,6 +60,8 @@ namespace Testing.AudioMixer
             AdjustRectPositionToVolume(arrow, decibelGroupVolume, MaxTopOffset, -MaxTopOffset);
 
             AudioSource[] audioSources = audioSourceProvider.GetActiveAudioSourcesForSoundType(soundType);
+            activeClipCountText.SetTextBetweenTags(audioSources.Length.ToString());
+            activeClipText.SetTextBetweenTags($"Active Clip{(audioSources.Length == 1 ? "" : "s")}");
 
             AdjustBarHeight(volumeSampleRectLeft, audioSources, 0, decibelGroupVolume);
             AdjustBarHeight(volumeSampleRectRight, audioSources, 1, decibelGroupVolume);

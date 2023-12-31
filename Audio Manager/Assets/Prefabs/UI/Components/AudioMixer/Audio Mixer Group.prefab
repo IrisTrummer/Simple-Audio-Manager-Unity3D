@@ -1276,6 +1276,7 @@ MonoBehaviour:
   soundType: 0
   groupNameText: {fileID: 5270280794291343859}
   activeClipCountText: {fileID: 5270280794679069994}
+  activeClipText: {fileID: 5270280794430791732}
   audioSourceProvider: {fileID: 0}
   volumeText: {fileID: 5270280794199854358}
   arrow: {fileID: 5270280794059621804}
