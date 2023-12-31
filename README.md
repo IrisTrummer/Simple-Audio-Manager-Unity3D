@@ -71,4 +71,4 @@ public class AudioPlayer : AudioPlayerBase
 Ressources for the Demo are provided by:
 - "Unity-UI-Rounded-Corners” by Kir Evdokimov (https://github.com/kirevdokimov). Available for use under the MIT license, at https://github.com/kirevdokimov/Unity-UI-Rounded-Corners
 - "Sonus Tres" © Sandro Figo (https://soundcloud.com/sandrofigo/sonus-tres)
-- Icons and Sound Effects by Kenney (https://kenney.nl/). Available for use under the  	Creative Commons CC0 License (https://creativecommons.org/publicdomain/zero/1.0/)
+- Icons and Sound Effects by Kenney (https://kenney.nl/). Available for use under the Creative Commons CC0 License (https://creativecommons.org/publicdomain/zero/1.0/)
