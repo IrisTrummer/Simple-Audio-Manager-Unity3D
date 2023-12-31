@@ -34,7 +34,9 @@ namespace Testing.AudioMixer
         [SerializeField]
         private float volumeSampleAdaptionSpeed = 4f;
 
-        private readonly float[] samples = new float[64];
+        private readonly float[] decibelPositionLookupTable = { 1, 0.745f, 0.431f, 0.257f, 0.129f, 0f };
+
+        private readonly float[] samples = new float[2048];
         private const float MaxTopOffset = 360;
 
         private void Awake()
@@ -44,33 +46,21 @@ namespace Testing.AudioMixer
 
         private void Update()
         {
-            // TODO WIP: calculations not correct
-            float volume = GetDecibelGroupVolume();
-            float linearVolume = DecibelHelper.DecibelToLinear(volume);
-            volumeText.SetTextBetweenTags(linearVolume.ToString("#0.##"));
+            float decibelGroupVolume = GetDecibelGroupVolume();
 
-            float arrowPosition = -Mathf.Lerp(MaxTopOffset, -MaxTopOffset, GetHeightPercentageForDecibelVolume(volume));
-            arrow.offsetMax = new Vector2(arrow.offsetMax.x, Mathf.Lerp(arrow.offsetMax.y, arrowPosition, Time.deltaTime * volumeSampleAdaptionSpeed));
+            volumeText.SetTextBetweenTags(DecibelHelper.DecibelToLinear(decibelGroupVolume).ToString("#0.##"));
+            AdjustRectPositionToVolume(arrow, decibelGroupVolume, MaxTopOffset, -MaxTopOffset);
 
-            // TODO exchange; just for testing
-            AudioSource audioSource = AudioManager.Instance.transform.GetChild(6).GetComponent<AudioSource>();
-
-            float sourceVolume0 = ComputeSourceVolume(audioSource, 0);
-            AdjustBarHeight(sourceVolume0, volumeSampleRectLeft);
-
-            float sourceVolume1 = ComputeSourceVolume(audioSource, 1);
-            AdjustBarHeight(sourceVolume1, volumeSampleRectRight);
-
-            Debug.Log($"{sourceVolume0} | {sourceVolume1}");
+            AudioSource audioSource = GetAudioSource();
+            
+            AdjustBarHeight(volumeSampleRectLeft, audioSource, 0, decibelGroupVolume);
+            AdjustBarHeight(volumeSampleRectRight, audioSource, 1, decibelGroupVolume);
         }
 
-        private float ComputeSourceVolume(AudioSource audioSource, int channel)
+        private void AdjustBarHeight(RectTransform rectTransform, AudioSource audioSource, int channel, float decibelGroupVolume)
         {
-            audioSource.GetOutputData(samples, channel);
-            
-            // formula taken from: https://forum.unity.com/threads/how-to-accurately-calculate-audio-decibels.321764/
-            float rms = Mathf.Sqrt(samples.Sum(s => Mathf.Pow(s, 2)) / samples.Length);
-            return 10 * Mathf.Log10(rms);
+            float sourceVolume = ComputeSourceVolume(audioSource, channel, decibelGroupVolume);
+            AdjustRectPositionToVolume(rectTransform, sourceVolume);
         }
 
         private float GetDecibelGroupVolume()
@@ -79,26 +69,38 @@ namespace Testing.AudioMixer
             return volume;
         }
 
-        private void AdjustBarHeight(float volume, RectTransform rectTransform)
+        private void AdjustRectPositionToVolume(RectTransform rectTransform, float volume, float bottomPosition = MaxTopOffset, float topPosition = 0)
         {
-            float t = GetHeightPercentageForDecibelVolume(volume, 1);
-            float top = -Mathf.Lerp(MaxTopOffset, 0, t);
-            top = Mathf.Lerp(rectTransform.offsetMax.y, top, Time.deltaTime * volumeSampleAdaptionSpeed);
+            float top = -Mathf.Lerp(bottomPosition, topPosition, GetHeightFactorForDecibelVolume(volume));
+            float lerpedTop = Mathf.Lerp(rectTransform.offsetMax.y, top, Time.deltaTime * volumeSampleAdaptionSpeed);
 
-            rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, top);
+            rectTransform.offsetMax = new Vector2(rectTransform.offsetMax.x, lerpedTop);
         }
 
-        private float GetHeightPercentageForDecibelVolume(float volume, float percentageToUpper = 1f)
+        private float GetHeightFactorForDecibelVolume(float volume)
         {
-            float[] lookupTable = { 1, 0.745f, 0.431f, 0.257f, 0.129f, 0f };
+            float lower = decibelPositionLookupTable[Mathf.Clamp(Mathf.CeilToInt((volume - 20.01f) / -20f), 0, decibelPositionLookupTable.Length - 1)];
+            float upper = decibelPositionLookupTable[Mathf.Clamp(Mathf.FloorToInt((volume - 20.01f) / -20f), 0, decibelPositionLookupTable.Length - 1)];
 
-            float lower = lookupTable[Mathf.Clamp(Mathf.CeilToInt((volume - 20.01f) / -20f), 0, lookupTable.Length)];
-            float upper = lookupTable[Mathf.Clamp(Mathf.FloorToInt((volume - 20.01f) / -20f), 0, lookupTable.Length)];
+            float t = ((volume + 80) / 20).Decimals();
+            if (Mathf.Approximately(t, 0))
+                t = 1f;
 
-            float t = (volume + 80) / 20;
-            t -= (int)t;
-            t += -1 + percentageToUpper;
-            return Mathf.Lerp(lower, upper, percentageToUpper);
+            return Mathf.Lerp(lower, upper, t);
+        }
+
+        private AudioSource GetAudioSource()
+        {
+            // TODO get all audioSources of the configured group
+            return AudioManager.Instance.transform.GetChild(0).GetComponent<AudioSource>();
+        }
+
+        private float ComputeSourceVolume(AudioSource audioSource, int channel, float channelVolumeDecibel)
+        {
+            audioSource.GetOutputData(samples, channel);
+
+            float rms = Mathf.Sqrt(samples.Sum(s => Mathf.Pow(s, 2)) / samples.Length);
+            return DecibelHelper.LinearToDecibel(rms * DecibelHelper.DecibelToLinear(channelVolumeDecibel));
         }
     }
 }
