@@ -1280,7 +1280,7 @@ MonoBehaviour:
   arrow: {fileID: 5270280794059621804}
   volumeSampleRectLeft: {fileID: 5270280795356096945}
   volumeSampleRectRight: {fileID: 5088327033448563639}
-  volumeSampleAdaptionSpeed: 4
+  volumeSampleAdaptionSpeed: 3
 --- !u!1001 &4791761816827068027
 PrefabInstance:
   m_ObjectHideFlags: 0
