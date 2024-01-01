@@ -117,6 +117,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 502ca8ea2721c904892acc5ca21d7bfe, type: 3}
+--- !u!114 &4101196862631303473 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7547866132331748071, guid: 502ca8ea2721c904892acc5ca21d7bfe, type: 3}
+  m_PrefabInstance: {fileID: 5788542312950793174}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5690046689744465002 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2207348490157895612, guid: 502ca8ea2721c904892acc5ca21d7bfe, type: 3}
@@ -264,6 +275,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldNameText: {fileID: 2167785412041931850}
+  baseColor: {fileID: 11400000, guid: eca210c5fef1b754b93eaac97b06564b, type: 2}
+  inactiveColor: {fileID: 11400000, guid: 68174d0f9dacdf74c85cb26045f5d876, type: 2}
+  imageToColorInactive:
+  - {fileID: 4101196862631303473}
   floatInputField: {fileID: 5690046689744465002}
 --- !u!114 &2167785412041931850 stripped
 MonoBehaviour:

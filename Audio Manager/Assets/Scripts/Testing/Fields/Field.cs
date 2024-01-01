@@ -1,8 +1,10 @@
 using System;
+using ColorBindings;
 using Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Testing.Fields
 {
@@ -10,8 +12,18 @@ namespace Testing.Fields
     {
         [SerializeField]
         private TMP_Text fieldNameText;
+        
+        [SerializeField]
+        private BindableColor baseColor;
+
+        [SerializeField]
+        private BindableColor inactiveColor;
+
+        [SerializeField]
+        private Image[] imageToColorInactive;
 
         public string FieldName { get; private set; }
+        public bool IsActive { get; private set; } = true;
 
         public Action Interact;
 
@@ -23,6 +35,12 @@ namespace Testing.Fields
 
         public void SetActive(bool active)
         {
+            IsActive = active;
+
+            foreach (Image image in imageToColorInactive)
+            {
+                image.color = active ? baseColor.Value : inactiveColor.Value;
+            }
         }
 
         // interface callbacks, does not work for some child components like text fields
@@ -39,7 +57,7 @@ namespace Testing.Fields
 
         private void RaiseInteractEvent()
         {
-            Interact.Invoke();
+            Interact?.Invoke();
         }
     }
 }
