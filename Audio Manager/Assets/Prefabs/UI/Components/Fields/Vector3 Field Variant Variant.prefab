@@ -91,6 +91,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4176724531924162927, guid: 206171694e93514408bf696978632401, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5646483563610174272}
+    - target: {fileID: 4176724531924162927, guid: 206171694e93514408bf696978632401, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPointerClick
+      objectReference: {fileID: 0}
     - target: {fileID: 4692927045807390211, guid: 206171694e93514408bf696978632401, type: 3}
       propertyPath: m_Material
       value: 
@@ -262,6 +270,14 @@ PrefabInstance:
     - target: {fileID: 8057256469957077463, guid: 206171694e93514408bf696978632401, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9203207877756506511, guid: 206171694e93514408bf696978632401, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5646483563610174272}
+    - target: {fileID: 9203207877756506511, guid: 206171694e93514408bf696978632401, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPointerClick
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7956306856614946105, guid: 206171694e93514408bf696978632401, type: 3}
@@ -443,6 +459,14 @@ PrefabInstance:
     - target: {fileID: 592006229415033063, guid: 2738d2ab40d823449ad6f1d66be9da7f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778109045853952948, guid: 2738d2ab40d823449ad6f1d66be9da7f, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5646483563610174272}
+    - target: {fileID: 6778109045853952948, guid: 2738d2ab40d823449ad6f1d66be9da7f, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPointerClick
       objectReference: {fileID: 0}
     - target: {fileID: 6955900637230953528, guid: 2738d2ab40d823449ad6f1d66be9da7f, type: 3}
       propertyPath: m_Material

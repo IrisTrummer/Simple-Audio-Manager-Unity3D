@@ -156,6 +156,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7454555293586389746}
     m_Modifications:
+    - target: {fileID: 230064834927083974, guid: f739ab546a4aa304686d8d1a00c34214, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5188617879360628854}
+    - target: {fileID: 230064834927083974, guid: f739ab546a4aa304686d8d1a00c34214, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPointerClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 230064834927083974, guid: f739ab546a4aa304686d8d1a00c34214, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Testing.Fields.Field, Testing
+      objectReference: {fileID: 0}
+    - target: {fileID: 230064834927083974, guid: f739ab546a4aa304686d8d1a00c34214, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1422391107931688983, guid: f739ab546a4aa304686d8d1a00c34214, type: 3}
       propertyPath: m_Material
       value: 
