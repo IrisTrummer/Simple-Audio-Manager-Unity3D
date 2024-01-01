@@ -146,13 +146,13 @@ namespace SimpleAudioManager
         /// </summary>
         public void FadeGroupVolumeTo(float value, float duration, SoundType soundType)
         {
-            if (!TryGetNameFromSoundType(soundType, out string groupName))
+            if (!TryGetNameFromSoundType(soundType, out string groupName) || !TryGetExposedParameterNameFromSoundType(soundType, out string parameterName))
             {
                 Debug.LogError($"Tried to fade volume of invalid group: {soundType}. You need to configure the corresponding group in the audio mixer first.");
                 return;
             }
 
-            audioMixer.GetFloat(groupName, out float start);
+            audioMixer.GetFloat(parameterName, out float start);
             start = DecibelHelper.DecibelToLinear(start);
 
             FadeGroupVolume(start, value, duration, soundType);
