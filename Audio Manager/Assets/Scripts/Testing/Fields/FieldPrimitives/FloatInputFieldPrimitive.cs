@@ -13,7 +13,17 @@ namespace Testing.Fields.FieldPrimitives
 
         public void SetInputFieldPlaceholder(float value)
         {
-            placeholder.text = value.ToString("#0.##");
+            SetInputFieldPlaceholder(value.ToString("#0.##"));
+        }
+        
+        public void SetInputFieldPlaceholder(string value)
+        {
+            placeholder.text = value;
+        }
+
+        public void ClearText()
+        {
+            inputField.text = string.Empty;
         }
 
         public float GetCurrentValue()
