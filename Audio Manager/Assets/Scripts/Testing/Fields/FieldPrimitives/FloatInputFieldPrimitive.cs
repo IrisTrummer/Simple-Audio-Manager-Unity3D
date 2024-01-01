@@ -29,7 +29,7 @@ namespace Testing.Fields.FieldPrimitives
         public float GetCurrentValue()
         {
             string value = string.IsNullOrWhiteSpace(inputField.text) ? placeholder.text : inputField.text;
-            return float.Parse(value);
+            return float.TryParse(value, out float v) ? v : -1;
         }
     }
 }
