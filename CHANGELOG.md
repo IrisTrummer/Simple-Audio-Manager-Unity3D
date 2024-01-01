@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Acknowledgements and credits
     - Method overloads for `PlayOnce()`, `PlayOnLoop()`, `PlayAtPosition()` and `FadeGroupVolume()`
 - Demo scene installation instructions to README
+- Screenshots for Setup instructions to README
 
 ### Fixed
 - Fixed setting group volumes to negative values
