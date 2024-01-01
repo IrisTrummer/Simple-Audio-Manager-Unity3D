@@ -43,47 +43,59 @@ namespace Testing
 
         private void PlayOnceButtonClicked(MethodParameters methodParameters)
         {
-            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group);
-            AudioManager.Instance.PlayOnce(audioClip, group, parameters.Pitch, parameters.Volume);
+            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group, out PitchShiftType pitchShiftType);
+
+            if (parameters.IsUsingPitchShiftType)
+                AudioManager.Instance.PlayOnce(audioClip, group, parameters.Volume, pitchShiftType);
+            else
+                AudioManager.Instance.PlayOnce(audioClip, group, parameters.Pitch, parameters.Volume);
         }
-        
+
         private void PlayOnLoopButtonClicked(MethodParameters methodParameters)
         {
-            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group);
-            AudioManager.Instance.PlayOnLoop(audioClip, group, parameters.Pitch, parameters.Volume);
+            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group, out PitchShiftType pitchShiftType);
+
+            if (parameters.IsUsingPitchShiftType)
+                AudioManager.Instance.PlayOnLoop(audioClip, group, parameters.Volume, pitchShiftType);
+            else
+                AudioManager.Instance.PlayOnLoop(audioClip, group, parameters.Pitch, parameters.Volume);
         }
-        
+
         private void PlayAtPositionButtonClicked(MethodParameters methodParameters)
         {
-            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group);
+            PlayClipMethodParameters parameters = GetPlayClipMethodParameters(methodParameters, out AudioClip audioClip, out SoundType group, out PitchShiftType pitchShiftType);
             PlayClipAtPositionMethodParameters positionParameters = (PlayClipAtPositionMethodParameters)parameters;
-            
-            AudioManager.Instance.PlayAudioClipAtPosition(audioClip, positionParameters.Position, group, parameters.Pitch, parameters.Volume, positionParameters.Loop);
+
+            if (parameters.IsUsingPitchShiftType)
+                AudioManager.Instance.PlayAudioClipAtPosition(audioClip, positionParameters.Position, group, parameters.Volume, positionParameters.Loop, pitchShiftType);
+            else
+                AudioManager.Instance.PlayAudioClipAtPosition(audioClip, positionParameters.Position, group, parameters.Pitch, parameters.Volume, positionParameters.Loop);
         }
-        
+
         private void SetVolumeButtonClicked(MethodParameters methodParameters)
         {
             SetVolumeMethodParameters parameters = (SetVolumeMethodParameters)methodParameters;
             AudioManager.Instance.SetVolume(parameters.Volume, GetGroupFromName(parameters.GroupName));
         }
-        
+
         private void FadeGroupVolumeButtonClicked(MethodParameters methodParameters)
         {
             FadeGroupVolumeMethodParameters parameters = (FadeGroupVolumeMethodParameters)methodParameters;
             AudioManager.Instance.FadeGroupVolume(parameters.FromTo.x, parameters.FromTo.y, parameters.Duration, GetGroupFromName(parameters.GroupName));
         }
-        
+
         private void ReloadSceneButtonClicked()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-        private PlayClipMethodParameters GetPlayClipMethodParameters(MethodParameters methodParameters, out AudioClip audioClip, out SoundType group)
+        private PlayClipMethodParameters GetPlayClipMethodParameters(MethodParameters methodParameters, out AudioClip audioClip, out SoundType group, out PitchShiftType pitchShiftType)
         {
             PlayClipMethodParameters parameters = (PlayClipMethodParameters)methodParameters;
-            
+
             audioClip = uiInitialisor.GetAudioClipByName(parameters.AudioClipName);
             group = GetGroupFromName(parameters.GroupName);
+            pitchShiftType = GetPitchShiftTypeFromName(parameters.PitchShiftTypeName);
 
             return parameters;
         }
@@ -91,6 +103,11 @@ namespace Testing
         private SoundType GetGroupFromName(string groupName)
         {
             return Enum.Parse<SoundType>(groupName);
+        }
+
+        private PitchShiftType GetPitchShiftTypeFromName(string pitchShiftTypeName)
+        {
+            return Enum.Parse<PitchShiftType>(pitchShiftTypeName);
         }
     }
 }

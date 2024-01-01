@@ -18,7 +18,7 @@ namespace Testing.MethodConfigurationMenus
 
         [SerializeField]
         private FloatField pitchField;
-        
+
         [SerializeField]
         private DropdownField pitchShiftTypeField;
 
@@ -31,11 +31,29 @@ namespace Testing.MethodConfigurationMenus
             volumeField.Initialise(FieldNames.Volume, volumeDefaultValue);
             pitchField.Initialise(FieldNames.Pitch, pitchDefaultValue);
             pitchShiftTypeField.Initialise("", pitchShiftTypeNames);
+
+            pitchShiftTypeField.SetActive(false);
+            
+            pitchField.Interact += OnInteractWithPitch;
+            pitchShiftTypeField.Interact += OnInteractWithPitchShiftType;
         }
 
         protected override MethodParameters.MethodParameters GetMethodParameters()
         {
-            return new PlayClipMethodParameters(clipDropdownField.GetCurrentValue(), groupDropdownField.GetCurrentValue(), volumeField.GetCurrentValue(), pitchField.GetCurrentValue());
+            return new PlayClipMethodParameters(clipDropdownField.GetCurrentValue(), groupDropdownField.GetCurrentValue(), volumeField.GetCurrentValue(), pitchField.GetCurrentValue(),
+                pitchShiftTypeField.GetCurrentValue(), pitchShiftTypeField.IsActive);
+        }
+
+        private void OnInteractWithPitch()
+        {
+            pitchField.SetActive(true);
+            pitchShiftTypeField.SetActive(false);
+        }
+
+        private void OnInteractWithPitchShiftType()
+        {
+            pitchShiftTypeField.SetActive(true);
+            pitchField.SetActive(false);
         }
     }
 }

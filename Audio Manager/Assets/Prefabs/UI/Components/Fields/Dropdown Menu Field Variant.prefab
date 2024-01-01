@@ -136,6 +136,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldNameText: {fileID: 7454555295023678430}
+  baseColor: {fileID: 11400000, guid: eca210c5fef1b754b93eaac97b06564b, type: 2}
+  inactiveColor: {fileID: 11400000, guid: 68174d0f9dacdf74c85cb26045f5d876, type: 2}
+  imageToColorInactive:
+  - {fileID: 4923510997581161775}
+  - {fileID: 4923510998860024482}
   dropdown: {fileID: 4923510997581161760}
   dropDownTextStyle: 2
 --- !u!114 &7454555295023678430 stripped
@@ -319,5 +324,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4923510997581161775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1422391107931688983, guid: f739ab546a4aa304686d8d1a00c34214, type: 3}
+  m_PrefabInstance: {fileID: 6336153491471119672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4923510998860024482 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1422391108532141978, guid: f739ab546a4aa304686d8d1a00c34214, type: 3}
+  m_PrefabInstance: {fileID: 6336153491471119672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

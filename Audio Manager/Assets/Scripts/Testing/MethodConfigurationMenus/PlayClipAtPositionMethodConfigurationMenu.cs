@@ -24,7 +24,7 @@ namespace Testing.MethodConfigurationMenus
         protected override MethodParameters.MethodParameters GetMethodParameters()
         {
             PlayClipMethodParameters p = (PlayClipMethodParameters)base.GetMethodParameters();
-            return new PlayClipAtPositionMethodParameters(p.AudioClipName, p.GroupName, p.Volume, p.Pitch, positionField.GetCurrentValue(), loopField.GetCurrentValue());
+            return new PlayClipAtPositionMethodParameters(p.AudioClipName, p.GroupName, p.Volume, p.Pitch, p.PitchShiftTypeName, p.IsUsingPitchShiftType, positionField.GetCurrentValue(), loopField.GetCurrentValue());
         }
     }
 }
