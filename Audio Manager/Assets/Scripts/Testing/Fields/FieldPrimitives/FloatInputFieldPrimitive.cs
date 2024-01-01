@@ -10,9 +10,14 @@ namespace Testing.Fields.FieldPrimitives
         
         [SerializeField]
         private TMP_Text placeholder;
+        
+        private float defaultValue;
+        
+        private const string InactiveText = "\u2500"; // horizontal line
 
         public void SetInputFieldPlaceholder(float value)
         {
+            defaultValue = value;
             SetInputFieldPlaceholder(value.ToString("#0.##"));
         }
         
@@ -30,6 +35,12 @@ namespace Testing.Fields.FieldPrimitives
         {
             string value = string.IsNullOrWhiteSpace(inputField.text) ? placeholder.text : inputField.text;
             return float.TryParse(value, out float v) ? v : -1;
+        }
+
+        public void SetActive(bool active)
+        {
+            ClearText();
+            SetInputFieldPlaceholder(active ? defaultValue.ToString("#0.##") : InactiveText);
         }
     }
 }

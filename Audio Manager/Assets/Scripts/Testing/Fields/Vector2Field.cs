@@ -22,5 +22,13 @@ namespace Testing.Fields
         {
             return new Vector2(xInputField.GetCurrentValue(), yInputField.GetCurrentValue());
         }
+
+        public override void SetActive(bool active)
+        {
+            base.SetActive(active);
+            
+            xInputField.SetActive(active);
+            yInputField.SetActive(active);
+        }
     }
 }
