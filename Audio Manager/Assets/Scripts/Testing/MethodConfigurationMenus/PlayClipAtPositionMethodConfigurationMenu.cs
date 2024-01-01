@@ -13,9 +13,9 @@ namespace Testing.MethodConfigurationMenus
         [SerializeField]
         private ToggleField loopField;
 
-        public override void Initialise(string methodName, List<string> clipNames, List<string> groupNames, float volumeDefaultValue, float pitchDefaultValue)
+        public override void Initialise(string methodName, List<string> clipNames, List<string> groupNames, float volumeDefaultValue, float pitchDefaultValue, List<string> pitchShiftTypeNames)
         {
-            base.Initialise(methodName, clipNames, groupNames, volumeDefaultValue, pitchDefaultValue);
+            base.Initialise(methodName, clipNames, groupNames, volumeDefaultValue, pitchDefaultValue, pitchShiftTypeNames);
 
             positionField.Initialise(FieldNames.Position, Vector3.zero);
             loopField.Initialise(FieldNames.Loop, false);

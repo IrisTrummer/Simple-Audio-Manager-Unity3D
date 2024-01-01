@@ -84,10 +84,20 @@ namespace Testing
 
             return names;
         }
+        
+        private List<string> GetPitchShiftTypeNames()
+        {
+            List<string> names = new List<string>();
+
+            foreach (PitchShiftType pitchShiftType in Enum.GetValues(typeof(PitchShiftType)))
+                names.Add(pitchShiftType.ToString());
+
+            return names;
+        }
 
         private void InitialisePlayConfiguration(PlayClipMethodConfigurationMenu configuration, string methodName)
         {
-            configuration.Initialise(methodName, GetAudioClipNames(), GetAudioGroupNames(), VolumeDefaultValue, PitchDefaultValue);
+            configuration.Initialise(methodName, GetAudioClipNames(), GetAudioGroupNames(), VolumeDefaultValue, PitchDefaultValue, GetPitchShiftTypeNames());
         }
     }
 }

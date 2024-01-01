@@ -18,10 +18,11 @@ namespace Testing.MethodConfigurationMenus
 
         [SerializeField]
         private FloatField pitchField;
+        
+        [SerializeField]
+        private DropdownField pitchShiftTypeField;
 
-        // TODO random pitch
-
-        public virtual void Initialise(string methodName, List<string> clipNames, List<string> groupNames, float volumeDefaultValue, float pitchDefaultValue)
+        public virtual void Initialise(string methodName, List<string> clipNames, List<string> groupNames, float volumeDefaultValue, float pitchDefaultValue, List<string> pitchShiftTypeNames)
         {
             SetMethodName(methodName);
 
@@ -29,6 +30,7 @@ namespace Testing.MethodConfigurationMenus
             groupDropdownField.Initialise(FieldNames.Group, groupNames);
             volumeField.Initialise(FieldNames.Volume, volumeDefaultValue);
             pitchField.Initialise(FieldNames.Pitch, pitchDefaultValue);
+            pitchShiftTypeField.Initialise("", pitchShiftTypeNames);
         }
 
         protected override MethodParameters.MethodParameters GetMethodParameters()
