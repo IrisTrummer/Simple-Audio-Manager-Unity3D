@@ -23,7 +23,7 @@ namespace Testing.MethodConfigurationMenus
             startButton.onClick.AddListener(RaiseStartButtonClickedEvent);
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             startButton.onClick.RemoveListener(RaiseStartButtonClickedEvent);
         }

@@ -14,22 +14,51 @@ namespace Testing.MethodConfigurationMenus
         private Vector2Field fromToField;
 
         [SerializeField]
-        private FloatField durationField;
-        
-        // TODO only target volume
+        private FloatField volumeField;
 
-        public void Initialise(string methodName, List<string> groupNames, Vector2 fromToDefaultValue, float durationDefaultValue)
+        [SerializeField]
+        private FloatField durationField;
+
+        public void Initialise(string methodName, List<string> groupNames, float volumeDefaultValue, Vector2 fromToDefaultValue, float durationDefaultValue)
         {
             SetMethodName(methodName);
-            
+
             groupDropdownField.Initialise(FieldNames.Group, groupNames);
+            volumeField.Initialise(FieldNames.Volume, volumeDefaultValue);
             fromToField.Initialise(FieldNames.Volume, fromToDefaultValue);
             durationField.Initialise(FieldNames.Duration, durationDefaultValue);
+
+            volumeField.SetActive(true);
+            fromToField.SetActive(false);
+
+            volumeField.Interact += OnInteractWithVolumeField;
+            fromToField.Interact += OnInteractWithFromToField;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            volumeField.Interact -= OnInteractWithVolumeField;
+            fromToField.Interact -= OnInteractWithFromToField;
         }
 
         protected override MethodParameters.MethodParameters GetMethodParameters()
         {
-            return new FadeGroupVolumeMethodParameters(groupDropdownField.GetCurrentValue(), fromToField.GetCurrentValue(), durationField.GetCurrentValue());
+            return new FadeGroupVolumeMethodParameters(groupDropdownField.GetCurrentValue(), volumeField.GetCurrentValue(), fromToField.GetCurrentValue(), durationField.GetCurrentValue(),
+                fromToField.IsActive);
+        }
+
+        private void OnInteractWithVolumeField()
+        {
+            volumeField.SetActive(true);
+            fromToField.SetActive(false);
+        }
+
+        private void OnInteractWithFromToField()
+        {
+            fromToField.SetActive(true);
+            volumeField.SetActive(false);
         }
     }
 }

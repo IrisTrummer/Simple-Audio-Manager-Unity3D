@@ -81,7 +81,11 @@ namespace Testing
         private void FadeGroupVolumeButtonClicked(MethodParameters methodParameters)
         {
             FadeGroupVolumeMethodParameters parameters = (FadeGroupVolumeMethodParameters)methodParameters;
-            AudioManager.Instance.FadeGroupVolume(parameters.FromTo.x, parameters.FromTo.y, parameters.Duration, GetGroupFromName(parameters.GroupName));
+            
+            if (parameters.IsUsingFromToVolume)
+                AudioManager.Instance.FadeGroupVolume(parameters.FromTo.x, parameters.FromTo.y, parameters.Duration, GetGroupFromName(parameters.GroupName));
+            else
+                AudioManager.Instance.FadeGroupVolumeTo(parameters.Volume, parameters.Duration, GetGroupFromName(parameters.GroupName));
         }
 
         private void ReloadSceneButtonClicked()
