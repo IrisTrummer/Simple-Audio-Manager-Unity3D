@@ -38,6 +38,14 @@ namespace Testing.MethodConfigurationMenus
             pitchShiftTypeField.Interact += OnInteractWithPitchShiftType;
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            
+            pitchField.Interact -= OnInteractWithPitch;
+            pitchShiftTypeField.Interact -= OnInteractWithPitchShiftType;
+        }
+
         protected override MethodParameters.MethodParameters GetMethodParameters()
         {
             return new PlayClipMethodParameters(clipDropdownField.GetCurrentValue(), groupDropdownField.GetCurrentValue(), volumeField.GetCurrentValue(), pitchField.GetCurrentValue(),

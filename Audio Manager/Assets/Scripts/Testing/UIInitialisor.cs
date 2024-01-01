@@ -67,7 +67,7 @@ namespace Testing
             InitialisePlayConfiguration(playOnLoop, nameof(AudioManager.PlayOnLoop));
             InitialisePlayConfiguration(playAtPosition, nameof(AudioManager.PlayAudioClipAtPosition));
             setVolume.Initialise(nameof(AudioManager.SetVolume), GetAudioGroupNames(), VolumeDefaultValue);
-            fadeGroupVolume.Initialise(nameof(AudioManager.FadeGroupVolume), GetAudioGroupNames(), new Vector2(1, 0), 1);
+            fadeGroupVolume.Initialise(nameof(AudioManager.FadeGroupVolume), GetAudioGroupNames(), VolumeDefaultValue, new Vector2(1, 0), 1);
         }
 
         private List<string> GetAudioClipNames()

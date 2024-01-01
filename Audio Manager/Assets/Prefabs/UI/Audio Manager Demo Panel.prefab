@@ -6835,6 +6835,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef9a4cc88594a0743b2479b842ce6bb0, type: 3}
+--- !u!114 &4720322733866984154 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 831168093813803415, guid: ef9a4cc88594a0743b2479b842ce6bb0, type: 3}
+  m_PrefabInstance: {fileID: 5334815566597106509}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6299783c3daa5f4488f70303038b03f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5334815566621619798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12469,6 +12480,7 @@ MonoBehaviour:
   startButton: {fileID: 4471642324318874570}
   groupDropdownField: {fileID: 415733146405756767}
   fromToField: {fileID: 1007856998430992630}
+  volumeField: {fileID: 4720322733866984154}
   durationField: {fileID: 4881648306423419427}
 --- !u!224 &4471642325841924101 stripped
 RectTransform:
