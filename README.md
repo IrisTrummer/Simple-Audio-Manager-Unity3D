@@ -41,8 +41,11 @@ To take a look at the demo scene, clone the repository, open the Unity project u
 1. Create a new audio mixer asset (right click in the Unity project window -> Create -> Audio Mixer)
 2. Open the Audio Mixer window (Window -> Audio -> Audio Mixer)
 3. In the Audio Mixer window, click the "+"-icon next to the Groups tab to add a new group under the `Master` group, name the group `Background`. Add two more groups in the same way with the names `Effects` and `UI`
+<img src="https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/images/Creating_Sound_Groups.png?raw=true" width="1000" alt="Screenshot of Unity Audio Mixer window">
 4. Select the `Master` group. In the hierarchy window, right click the volume field and select "Expose 'Volume (of Master)' to script". Repeat this procedure for the three groups you created in the previous step
+<img src="https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/images/Exposing_Volume_Parameter.png?raw=true" width="1000" alt="Screenshot of Unity Hierarchy window">
 5. In the audio mixer on the top right click on the "Exposed Parameters" button. Rename each parameter to the group name and append "Volume", for example "MasterVolume"
+<img src="https://github.com/IrisTrummer/Simple-Audio-Manager-Unity3D/blob/main/images/Renaming_Exposed_Parameters.png?raw=true" width="1000" alt="Screenshot of Unity Audio Mixer window with exposed parameter tab">
 
 ### Setting up the Audio Manager
 6. Create a new empty game object and add the AudioManager script to it
