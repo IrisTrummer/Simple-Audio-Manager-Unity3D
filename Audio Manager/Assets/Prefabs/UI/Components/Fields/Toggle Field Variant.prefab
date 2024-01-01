@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4136766971704010990}
     m_Modifications:
+    - target: {fileID: 4305412468470862446, guid: 98bd993e01e2bbf4cb4c5acc914c18d7, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6501532237896188779}
+    - target: {fileID: 4305412468470862446, guid: 98bd993e01e2bbf4cb4c5acc914c18d7, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnPointerClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305412468470862446, guid: 98bd993e01e2bbf4cb4c5acc914c18d7, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Testing.Fields.Field, Testing
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305412468470862446, guid: 98bd993e01e2bbf4cb4c5acc914c18d7, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5487361155064492802, guid: 98bd993e01e2bbf4cb4c5acc914c18d7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -169,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5333495842098020898, guid: 4f45ec34957f7cc46a7dc92a72c4dbaa, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 192
       objectReference: {fileID: 0}
     - target: {fileID: 5333495842098020898, guid: 4f45ec34957f7cc46a7dc92a72c4dbaa, type: 3}
       propertyPath: m_LocalPosition.x

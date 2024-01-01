@@ -8624,6 +8624,7 @@ MonoBehaviour:
   groupDropdownField: {fileID: 3623137845238767586}
   volumeField: {fileID: 6401121958343209031}
   pitchField: {fileID: 749370796345146519}
+  pitchShiftTypeField: {fileID: 7196763252019205687}
 --- !u!114 &749370796345146519 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4643033897915677181, guid: df1c14f0b8f0fa44989fe704250d983c, type: 3}
@@ -8666,6 +8667,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6299783c3daa5f4488f70303038b03f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7196763252019205687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3019971903526327133, guid: df1c14f0b8f0fa44989fe704250d983c, type: 3}
+  m_PrefabInstance: {fileID: 5334815566717273450}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ca1e8e07ef933498dbd9762ae05b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5334815566762994345
@@ -13102,6 +13114,7 @@ MonoBehaviour:
   groupDropdownField: {fileID: 3623137846605223298}
   volumeField: {fileID: 6401121959641971239}
   pitchField: {fileID: 749370795043763959}
+  pitchShiftTypeField: {fileID: 7196763252865768535}
   positionField: {fileID: 4491546819717040690}
   loopField: {fileID: 1211988491629790311}
 --- !u!114 &749370795043763959 stripped
@@ -13146,6 +13159,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6299783c3daa5f4488f70303038b03f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7196763252865768535 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3019971903526327133, guid: df1c14f0b8f0fa44989fe704250d983c, type: 3}
+  m_PrefabInstance: {fileID: 5334815568102870794}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ca1e8e07ef933498dbd9762ae05b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5334815568117871363
@@ -15399,6 +15423,7 @@ MonoBehaviour:
   groupDropdownField: {fileID: 415733147787145532}
   volumeField: {fileID: 8022697871523569305}
   pitchField: {fileID: 4460058349370217033}
+  pitchShiftTypeField: {fileID: 6080714611512752361}
 --- !u!114 &4471642325831841678 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4865126515960486970, guid: df1c14f0b8f0fa44989fe704250d983c, type: 3}
@@ -15419,6 +15444,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6080714611512752361 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3019971903526327133, guid: df1c14f0b8f0fa44989fe704250d983c, type: 3}
+  m_PrefabInstance: {fileID: 9046062364078009268}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02ca1e8e07ef933498dbd9762ae05b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &7005519147421162479 stripped
