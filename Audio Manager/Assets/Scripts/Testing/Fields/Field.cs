@@ -33,7 +33,7 @@ namespace Testing.Fields
             fieldNameText.SetTextBetweenTags(fieldName);
         }
 
-        public void SetActive(bool active)
+        public virtual void SetActive(bool active)
         {
             IsActive = active;
 
