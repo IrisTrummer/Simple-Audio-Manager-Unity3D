@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3421533109363790837}
   - component: {fileID: 3421533109363790842}
   - component: {fileID: 3421533109363790843}
+  - component: {fileID: 7970600214188780868}
+  - component: {fileID: 7961838250923865442}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -135,3 +137,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {fileID: 11400000, guid: ef951b791107b674b90cc4322bc4b80a, type: 2}
+--- !u!114 &7970600214188780868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3421533109363790841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38b975cc3a12430989e3f4f5ff491413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: e01c42ba82ba9994ab1f202dfa86c5fd, type: 3}
+  playAtTarget: 0
+  target: {fileID: 0}
+  playOnStart: 0
+  loop: 0
+  soundType: 3
+  volume: 1
+  pitchShift: 1
+  fadeGroup: 0
+  fadeDuration: 1
+--- !u!114 &7961838250923865442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3421533109363790841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518ca4734b5bdb24cbac569d6f68983b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHover:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7970600214188780868}
+        m_TargetAssemblyTypeName: SimpleAudioManager.AudioPlayerBase, com.iristrummer.simple-audio-manager
+        m_MethodName: PlaySound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnUnhover:
+    m_PersistentCalls:
+      m_Calls: []
