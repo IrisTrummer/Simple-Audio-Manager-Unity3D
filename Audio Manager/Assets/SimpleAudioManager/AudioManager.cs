@@ -221,6 +221,7 @@ namespace SimpleAudioManager
             audioSource.pitch = pitch;
             audioSource.transform.position = position;
             audioSource.spatialBlend = is3D ? 1f : 0f;
+            audioSource.time = 0;
 
 #if MUTE_AUDIO_MANAGER
             audioSource.volume = 0;
