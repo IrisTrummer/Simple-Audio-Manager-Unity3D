@@ -24,6 +24,8 @@ AudioManager.Instance.FadeGroupVolumeTo(0f, 3f, SoundType.Master);
 
 You can use the `AudioPlayer` component to play audio clips directly in the scene or for setting up background music.
 
+If you need to configure different volumes for different audio clips, consider using the serializable `SoundEffect` helper struct, which contains an audio clip and a volume.
+
 ## Installation
 
 The package can be installed using [OpenUPM](https://openupm.com/packages/com.iristrummer.simple-audio-manager)
