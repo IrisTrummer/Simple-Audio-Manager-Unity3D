@@ -10,7 +10,7 @@ namespace Testing
 
         private void Start()
         {
-            AudioManager.Instance.PlayOnLoop(soundEffect.Clip, SoundType.Effects, soundEffect.Volume, PitchShiftType.None);
+            AudioManager.Instance.PlayOnLoop(soundEffect, SoundType.Effects);
         }
     }
 }

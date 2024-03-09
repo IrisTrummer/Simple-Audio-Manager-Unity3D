@@ -57,6 +57,14 @@ namespace SimpleAudioManager
 
             Play(SetupAudioSource(clip, Vector3.zero, soundType, volume, false, false, pitch));
         }
+        
+        /// <summary>
+        /// <inheritdoc cref="PlayOnce(UnityEngine.AudioClip,SimpleAudioManager.SoundType,float,float)"/>
+        /// </summary>
+        public void PlayOnce(SoundEffect soundEffect, SoundType soundType, float pitch)
+        {
+            PlayOnce(soundEffect.Clip, soundType, pitch, soundEffect.Volume);
+        }
 
         /// <summary>
         /// <inheritdoc cref="PlayOnce(UnityEngine.AudioClip,SimpleAudioManager.SoundType,float,float)"/>
@@ -65,6 +73,14 @@ namespace SimpleAudioManager
         public void PlayOnce(AudioClip clip, SoundType soundType, float volume = 1f, PitchShiftType pitchShiftType = PitchShiftType.None)
         {
             PlayOnce(clip, soundType, GetRandomPitchShift(pitchShiftType), volume);
+        }
+        
+        /// <summary>
+        /// <inheritdoc cref="PlayOnce(UnityEngine.AudioClip,SimpleAudioManager.SoundType,float,PitchShiftType)"/>
+        /// </summary>
+        public void PlayOnce(SoundEffect soundEffect, SoundType soundType, PitchShiftType pitchShiftType = PitchShiftType.None)
+        {
+            PlayOnce(soundEffect.Clip, soundType, GetRandomPitchShift(pitchShiftType), soundEffect.Volume);
         }
 
         /// <summary>
@@ -79,6 +95,14 @@ namespace SimpleAudioManager
             AudioSource audioSource = SetupAudioSource(clip, Vector3.zero, soundType, volume, false, true, pitch);
             Play(audioSource);
         }
+        
+        /// <summary>
+        /// <inheritdoc cref="PlayOnLoop(UnityEngine.AudioClip,SimpleAudioManager.SoundType,float,float)"/>
+        /// </summary>
+        public void PlayOnLoop(SoundEffect soundEffect, SoundType soundType, float pitch)
+        {
+            PlayOnLoop(soundEffect.Clip, soundType, pitch, soundEffect.Volume);
+        }
 
         /// <summary>
         /// <inheritdoc cref="PlayOnLoop(UnityEngine.AudioClip,SimpleAudioManager.SoundType,float,float)"/>
@@ -87,6 +111,14 @@ namespace SimpleAudioManager
         public void PlayOnLoop(AudioClip clip, SoundType soundType, float volume = 1f, PitchShiftType pitchShiftType = PitchShiftType.None)
         {
             PlayOnLoop(clip, soundType, GetRandomPitchShift(pitchShiftType), volume);
+        }
+        
+        /// <summary>
+        /// <inheritdoc cref="PlayOnLoop(UnityEngine.AudioClip,SimpleAudioManager.SoundType,float,PitchShiftType)"/>
+        /// </summary>
+        public void PlayOnLoop(SoundEffect soundEffect, SoundType soundType, PitchShiftType pitchShiftType = PitchShiftType.None)
+        {
+            PlayOnLoop(soundEffect.Clip, soundType, GetRandomPitchShift(pitchShiftType), soundEffect.Volume);
         }
 
         /// <summary>
@@ -99,6 +131,14 @@ namespace SimpleAudioManager
 
             Play(SetupAudioSource(clip, position, soundType, volume, true, loop, pitch));
         }
+        
+        /// <summary>
+        /// <inheritdoc cref="PlayAudioClipAtPosition(UnityEngine.AudioClip,UnityEngine.Vector3,SimpleAudioManager.SoundType,float,float,bool)"/>
+        /// </summary>
+        public void PlayAudioClipAtPosition(SoundEffect soundEffect, Vector3 position, SoundType soundType, float pitch, bool loop = false)
+        {
+            PlayAudioClipAtPosition(soundEffect.Clip, position, soundType, pitch, soundEffect.Volume, loop);
+        }
 
         /// <summary>
         /// <inheritdoc cref="PlayAudioClipAtPosition(UnityEngine.AudioClip,UnityEngine.Vector3,SimpleAudioManager.SoundType,float,float,bool)"/>
@@ -108,11 +148,18 @@ namespace SimpleAudioManager
         {
             PlayAudioClipAtPosition(clip, position, soundType, GetRandomPitchShift(pitchShiftType), volume, loop);
         }
+        
+        /// <summary>
+        /// <inheritdoc cref="PlayAudioClipAtPosition(UnityEngine.AudioClip,UnityEngine.Vector3,SimpleAudioManager.SoundType,float,bool,PitchShiftType)"/>
+        /// </summary>
+        public void PlayAudioClipAtPosition(SoundEffect soundEffect, Vector3 position, SoundType soundType, bool loop = false, PitchShiftType pitchShiftType = PitchShiftType.None)
+        {
+            PlayAudioClipAtPosition(soundEffect.Clip, position, soundType, GetRandomPitchShift(pitchShiftType), soundEffect.Volume, loop);
+        }
 
         /// <summary>
         /// Stops the given audio clip. Only works for looping clips.
         /// </summary>
-        /// <param name="audioClip"></param>
         public void StopAudioClip(AudioClip audioClip)
         {
             if (audioClip == null || !loopingAudioSources.ContainsKey(audioClip))
