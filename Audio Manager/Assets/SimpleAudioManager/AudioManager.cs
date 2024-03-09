@@ -235,13 +235,11 @@ namespace SimpleAudioManager
 
             void OnGet(AudioSource audioSource)
             {
-                audioSource.enabled = true;
                 audioSource.transform.SetParent(transform);
             }
 
             void OnRelease(AudioSource audioSource)
             {
-                audioSource.enabled = false;
                 audioSource.transform.SetParent(transform);
             }
         }
