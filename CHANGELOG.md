@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2024-03-09
+
 ### Added
 - Added sound effect struct (helper containing an audio clip and a volume) with custom property drawer
 - Added "Play"-method extensions accepting a sound effect helper
