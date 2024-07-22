@@ -4,7 +4,7 @@ using UnityEngine;
 namespace SimpleAudioManager
 {
     [Serializable]
-    public struct SoundEffect
+    public class SoundEffect
     {
         [SerializeField]
         private AudioClip audioClip;
