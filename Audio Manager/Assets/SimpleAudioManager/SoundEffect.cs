@@ -12,7 +12,7 @@ namespace SimpleAudioManager
         public AudioClip Clip => audioClip;
 
         [SerializeField, Min(0)]
-        private float volume;
+        private float volume = 1f;
 
         public float Volume => volume;
     }
